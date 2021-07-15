@@ -28,7 +28,7 @@ local beautiful     = require("beautiful")
 
 -- Notification library
 local naughty       = require("naughty")
-naughty.config.defaults['icon_size'] = 100
+naughty.config.defaults['icon_size'] = 130
 
 --local menubar       = require("menubar")
 
@@ -103,7 +103,7 @@ local themes = {
 }
 
 -- choose your theme here
-local chosen_theme = themes[1]
+local chosen_theme = themes[3]
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -218,7 +218,7 @@ lain.layout.termfair.center.nmaster    = 3
 lain.layout.termfair.center.ncol       = 1
 lain.layout.cascade.tile.offset_x      = dpi(2)
 lain.layout.cascade.tile.offset_y      = dpi(32)
-lain.layout.cascade.tile.extra_padding = dpi(5)
+lain.layout.cascade.tile.extra_padding = dpi(30)
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
@@ -275,7 +275,7 @@ screen.connect_signal("arrange", function (s)
     local only_one = #s.tiled_clients == 1
     for _, c in pairs(s.clients) do
         if only_one and not c.floating or c.maximized then
-            c.border_width = 2
+            c.border_width = 0
         else
             c.border_width = beautiful.border_width
         end
@@ -1066,6 +1066,8 @@ awful.rules.rules = {
           "setup",
         }
       }, properties = { floating = true }},
+      { rule = { class = "Plank", "Tint2" },
+      properties = { opacity = 1, border_width=0, ontop=true } },
 
           -- Floating clients but centered in screen
     { rule_any = {
@@ -1151,9 +1153,9 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-
 -- }}}
 
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+awful.spawn.with_shell("plank")
