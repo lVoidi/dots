@@ -17,20 +17,24 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
 theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
-theme.font                                      = "Noto Sans Regular 11"
-theme.taglist_font                              = "Noto Sans Regular 14"
-theme.fg_normal                                 = "#ECEFF4"
+theme.font                                      = "Cantarell 10"
+theme.useless_gap                               = 8
+theme.taglist_font                              = "Cantarell 16"
+theme.fg_normal                                 = "#fefefe"
 theme.fg_focus                                  = "#81A1C1"
-theme.fg_urgent                                 = "#b74822"
+theme.fg_urgent                                 = "#BF616A"
 theme.bg_normal                                 = "#2E3440"
+theme.bg_systray                				= "#4C566A"
+theme.systray_icon_spacing		            	= 7
 theme.bg_focus                                  = theme.bg_normal
-theme.bg_urgent                                 = "#3F3F3F"
+theme.bg_urgent                                 = theme.bg_normal
 theme.taglist_fg_focus                          = "#81A1C1"
+theme.taglist_spacing				            = 5
 theme.tasklist_bg_focus                         = "#2E3440"
 theme.tasklist_fg_focus                         = "#81A1C1"
-theme.border_width                              = 0
-theme.border_normal                             = "#4C566A"
-theme.border_focus                              = "#D8DEE9"
+theme.border_width                              = 3
+theme.border_normal                             = "#81A1C1"
+theme.border_focus                              = "#88C0D0"
 theme.border_marked                             = "#CC9393"
 theme.titlebar_bg_focus                         = "#3F3F3F"
 theme.titlebar_bg_normal                        = "#3F3F3F"
@@ -79,7 +83,6 @@ theme.widget_scissors                           = theme.dir .. "/icons/scissors.
 theme.widget_weather                            = theme.dir .. "/icons/dish.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = 7
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -371,12 +374,14 @@ function theme.at_screen_connect(s)
     -- Create a tasklist widget
     --s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
+
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top",
     			    screen = s,
 			    height = dpi(25),
 			    bg = theme.bg_normal,
-			    fg = theme.fg_normal,
+			    fg = "#ffffff",
 			    opacity = 0.85,
 			    })
 
@@ -386,6 +391,11 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --spr,
+            --wibox.widget {
+    		--image  = "/home/lvoidi/.config/awesome/themes/powerarrow-blue/tux.png",
+    		--resize = true,
+    		--widget = wibox.widget.imagebox
+	    --},
             s.mytaglist,
             s.mypromptbox,
             spr,
@@ -393,6 +403,7 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+	    arrow(theme.bg_normal, "#4C566A"),
             wibox.widget.systray(),
             --[[ using shapes
             pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
@@ -411,7 +422,7 @@ function theme.at_screen_connect(s)
             --wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(7)), "#343434"),
             --arrow("alpha", "#5E81AC"),
             --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(6)), "#5E81AC"),
-            arrow("#2E3440", "#BF616A"),
+            arrow("#4C566A", "#BF616A"),
             wibox.container.background(wibox.container.margin(wibox.widget { volicon, theme.volume.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#BF616A"),
             arrow("#BF616A", "#D08770"),
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#D08770"),
@@ -425,9 +436,9 @@ function theme.at_screen_connect(s)
             wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#A3BE8C"),
             arrow("#A3BE8C", "#B48EAD"),
             wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#B48EAD"),
-            arrow("#B48EAD", "#4C566A"),
-            wibox.container.background(wibox.container.margin(clock, dpi(4), dpi(8)), "#4C566A"),
-            arrow("#4C566A", theme.bg_normal),
+            arrow("#B48EAD", "#BF616A"),
+            wibox.container.background(wibox.container.margin(clock, dpi(4), dpi(8)), "#BF616A"),
+            arrow("#BF616A", theme.bg_normal),
             --]]
             s.mylayoutbox,
         },
