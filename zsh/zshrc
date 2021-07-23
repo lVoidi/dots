@@ -125,12 +125,14 @@ if [ -d "$HOME/.local/bin" ] ;
 fi
 
 #list
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -la'
-alias l='ls'
+alias ls='ptls'
+alias la='ptls -a'
+alias ll='ptls -la'
+alias l='logo-ls'
 alias l.="ls -A | egrep '^\.'"
-
+alias touch="pttouch"
+alias mkdir="ptmkdir"
+alias pwd="ptpwd"
 #fix obvious typo's
 alias cd..='cd ..'
 alias pdw="pwd"
@@ -344,10 +346,34 @@ ex ()
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 alias c="clear"
 alias m-cfg="xrandr --output LVDS1 --mode 1366x768 --rotate normal --output VGA1 --primary --mode 1920x1080 --rotate normal --right-of LVDS1"
+alias cls="clear"
+
 search_man() {
       man $1 | grep -- $2
     }
+vpn(){
+  sudo protonvpn $1 $2
+}
+
+
+initcppproject() {
+  mkdir $1 && cd $1
+  echo "se ha creado carpeta del projecto: $1"
+  mkdir bin
+  echo "se ha creado la carpeta con los archivos binarios"
+  touch main.cpp
+  echo "creado archivo main"
+  logo-ls
+}
+
+commit_and_push() {
+      git commit $1 -m $2
+      git push
+    }
+
+
 # reporting tools - install when not installed
+# 
 # install neofetch
 # neofetch
 # install screenfetch
@@ -364,3 +390,4 @@ search_man() {
 #hfetch
 # install lolcat
 #sfetch | lolcat
+
