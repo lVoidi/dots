@@ -30,6 +30,7 @@ set sw=2
 "set relativenumber
 set laststatus=2
 set noshowmode
+set termguicolors
 set background=dark
 set t_Co=256
 " Inicializa los plugins
