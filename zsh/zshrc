@@ -12,7 +12,7 @@ export ZSH=/usr/share/oh-my-zsh/
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # if you installed the package oh-my-zsh-powerline-theme-git then you type here "powerline" as zsh theme
-ZSH_THEME="smt"
+ZSH_THEME="macovsky"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -345,9 +345,9 @@ ex ()
 
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 alias c="clear"
-alias m-cfg="xrandr --output LVDS1 --mode 1366x768 --rotate normal --output VGA1 --primary --mode 1920x1080 --rotate normal --right-of LVDS1"
+alias m="xrandr --output LVDS1 --mode 1366x768 --rotate normal --output VGA1 --primary --mode 1920x1080 --rotate normal --right-of LVDS1"
 alias cls="clear"
-
+alias t="tmux -2"
 search_man() {
       man $1 | grep -- $2
     }
@@ -355,6 +355,12 @@ vpn(){
   sudo protonvpn $1 $2
 }
 
+edit (){
+  tmux split-window
+  tmux resize-pane -D 9
+  sleep 0.3
+  nvim $1
+}
 
 initcppproject() {
   mkdir $1 && cd $1
