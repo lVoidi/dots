@@ -17,19 +17,22 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
 theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
-theme.font                                      = "Cantarell 10"
+
+theme.font                                      = "Comic Mono 10"
 theme.useless_gap                               = 8
-theme.taglist_font                              = "Cantarell 16"
+theme.taglist_font                              = "Comic Mono 16"
 theme.fg_normal                                 = "#fefefe"
 theme.fg_focus                                  = "#81A1C1"
 theme.fg_urgent                                 = "#BF616A"
 theme.bg_normal                                 = "#2E3440"
 theme.bg_systray                				= "#4C566A"
-theme.systray_icon_spacing		            	= 7
+theme.systray_icon_spacing		            	= 8
 theme.bg_focus                                  = theme.bg_normal
 theme.bg_urgent                                 = theme.bg_normal
-theme.taglist_fg_focus                          = "#81A1C1"
-theme.taglist_spacing				            = 5
+theme.taglist_fg_focus                          = "#81A1C100"
+theme.taglist_bg_focus                          = "#4C566A00"
+theme.taglist_spacing				            = 9
+theme.taglist_bg_volatile                       = "#D8DEE9"
 theme.tasklist_bg_focus                         = "#2E3440"
 theme.tasklist_fg_focus                         = "#81A1C1"
 theme.border_width                              = 3
@@ -119,7 +122,7 @@ local clock = awful.widget.watch(
 theme.cal = lain.widget.cal({
     attach_to = { clock },
     notification_preset = {
-        font = "Noto Sans Mono Medium 10",
+        font = "Source Code Pro 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -341,6 +344,8 @@ local function pl(widget, bgcolor, padding)
     return wibox.container.background(wibox.container.margin(widget, dpi(16), dpi(16)), bgcolor, theme.powerline_rl)
 end
 
+
+
 function theme.at_screen_connect(s)
     -- Quake application
    -- s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -369,10 +374,37 @@ function theme.at_screen_connect(s)
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+    -- s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    --s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+    -- colors = {
+    --  "#FF0000",
+    --  "#00FF00",
+    --  "#0000FF",
+    --  "#FF0000",
+    --  "#00FF00",
+    --  "#00ff00",
+    --  "#00ff00",
+    --  "#00ff00",
+    --  "#00ff00",
+    --  "00ff00"
+    --},
+    --widget_template = {
+    --   {
+    --      id     = 'text_role',
+    --      widget = wibox.widget.textbox
+    --    },
+    --    id     = 'bg',
+    --    widget = wibox.container.background,
+    --    create_callback = function(self, t, index, tagsList)
+    --       for i=1, 10 do
+    --        self.fg = colors[i] or colors.default
+    --       end
+    --    end,
+    --}
+    
+
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
 
 
@@ -382,7 +414,7 @@ function theme.at_screen_connect(s)
 			    height = dpi(25),
 			    bg = theme.bg_normal,
 			    fg = "#ffffff",
-			    opacity = 0.85,
+			    opacity = 0.80,
 			    })
 
     -- Add widgets to the wibox
@@ -396,7 +428,16 @@ function theme.at_screen_connect(s)
     		--resize = true,
     		--widget = wibox.widget.imagebox
 	    --},
-            s.mytaglist,
+            {
+              awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons),
+              shape = gears.shape.rounded_bar,   
+              bg = "#4C566A",   
+              shape_clip = true,
+              shape_border_width = 1,
+              shape_border_color = theme.bg_normal,
+              widget = wibox.container.background 
+            },
+            -- s.mytaglist,
             s.mypromptbox,
             spr,
         },
@@ -420,17 +461,17 @@ function theme.at_screen_connect(s)
             -- using separators
             --arrow(theme.bg_normal, "#343434"),
             --wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(7)), "#343434"),
-            --arrow("alpha", "#5E81AC"),
-            --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(6)), "#5E81AC"),
+            --arrow("alpha", "#D8DEE9"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(6)), "#D8DEE9"),
             arrow("#4C566A", "#BF616A"),
             wibox.container.background(wibox.container.margin(wibox.widget { volicon, theme.volume.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#BF616A"),
             arrow("#BF616A", "#D08770"),
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#D08770"),
             arrow("#D08770", "#EBCB8B"),
             wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), "#EBCB8B"),
-            --arrow("#81A1C1", "#5E81AC"),
-            --wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#5E81AC"),
-            --arrow("#5E81AC", "#81A1C1"),
+            --arrow("#81A1C1", "#D8DEE9"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#D8DEE9"),
+            --arrow("#D8DEE9", "#81A1C1"),
             --wibox.container.background(wibox.container.margin(wibox.widget { weathericon, theme.weather.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#81A1C1"),
             arrow("#EBCB8B", "#A3BE8C"),
             wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#A3BE8C"),
