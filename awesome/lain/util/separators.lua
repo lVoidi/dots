@@ -16,6 +16,9 @@ local separators = { height = 0, width = 9 }
 -- [[ Arrow
 
 -- Right
+--
+
+
 function separators.arrow_right(col1, col2)
     local widget = wibox.widget.base.make_widget()
     widget.col1 = col1

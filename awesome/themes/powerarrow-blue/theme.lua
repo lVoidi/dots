@@ -14,6 +14,35 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+local colors                                    = {}
+
+-- Aurora Nord Scheme
+colors.green                                    = "#A3BE8C"
+colors.red                                      = "#BF616A"
+colors.orange                                   = "#D08770"
+colors.yellow                                   = "#EBCB8B"
+colors.pink                                     = "#B48EAD"
+
+-- Frost
+colors.frost                                    = {}
+colors.frost.darkest                            = "#5E81AC"
+colors.frost.lightest                           = "#88C0D0"
+colors.frost.aqua                               = "#81A1C1"
+colors.frost.light_green                        = "#8FBCBB"
+
+-- Snow Storm
+colors.light                                    = {}
+colors.light.lighter                            = "#ECEFF4"
+colors.light.darker                             = "#D8DEE9"
+colors.light.medium                             = "#E5E9F0"
+
+-- Polar night
+colors.polar                                    = {}
+colors.polar.darkest                            = "#2E3440"
+colors.polar.lightest                           = "#4C566A"
+colors.polar.darker                             = "#3B4252"
+colors.polar.lighter                            = "#434C5E"
+
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
 theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
@@ -21,24 +50,23 @@ theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
 theme.font                                      = "Comic Mono 10"
 theme.useless_gap                               = 8
 theme.taglist_font                              = "Comic Mono 16"
-theme.fg_normal                                 = "#fefefe"
-theme.fg_focus                                  = "#81A1C1"
-theme.fg_urgent                                 = "#BF616A"
-theme.bg_normal                                 = "#2E3440"
-theme.bg_systray                				= "#4C566A"
-theme.systray_icon_spacing		            	= 8
+theme.fg_normal                                 = colors.light.lighter
+theme.fg_focus                                  = colors.light.darker
+theme.fg_urgent                                 = colors.red
+theme.bg_normal                                 = colors.polar.darkest
+theme.bg_systray                				= colors.red
+theme.systray_icon_spacing		            	= 10
 theme.bg_focus                                  = theme.bg_normal
-theme.bg_urgent                                 = "ffffff00"
+theme.bg_urgent                                 = "#00000000"
 theme.taglist_fg_focus                          = "#81A1C100"
 theme.taglist_bg_focus                          = "#4C566A00"
 theme.taglist_spacing				            = 9
-theme.taglist_bg_volatile                       = "#D8DEE9"
-theme.tasklist_bg_focus                         = "#2E3440"
-theme.tasklist_fg_focus                         = "#81A1C1"
+theme.tasklist_bg_focus                         = colors.polar.darkest
+theme.tasklist_fg_focus                         = colors.frost.aqua
 theme.border_width                              = 3
-theme.border_normal                             = "#81A1C1"
-theme.border_focus                              = "#88C0D0"
-theme.border_marked                             = "#CC9393"
+theme.border_normal                             = colors.frost.aqua
+theme.border_focus                              = colors.frost.lightest
+theme.border_marked                             = colors.frost.light_green
 theme.titlebar_bg_focus                         = "#3F3F3F"
 theme.titlebar_bg_normal                        = "#3F3F3F"
 theme.titlebar_bg_focus                         = theme.bg_focus
@@ -216,7 +244,7 @@ local mem = lain.widget.mem({
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. " "))
+        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
     end
 })
 
@@ -413,8 +441,8 @@ function theme.at_screen_connect(s)
     			    screen = s,
 			    height = dpi(25),
 			    bg = theme.bg_normal,
-			    fg = "#ffffff",
-			    opacity = 0.80,
+			    fg = theme.fg_normal,
+			    opacity = 1.0,
 			    })
 
     -- Add widgets to the wibox
@@ -431,7 +459,7 @@ function theme.at_screen_connect(s)
             {
               awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons),
               shape = gears.shape.rounded_bar,   
-              bg = "#4C566A",   
+              bg = colors.polar.lightest,   
               shape_clip = true,
               shape_border_width = 1,
               shape_border_color = theme.bg_normal,
@@ -444,7 +472,7 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-	    arrow(theme.bg_normal, "#4C566A"),
+	    arrow(theme.bg_normal, colors.red),
             wibox.widget.systray(),
             --[[ using shapes
             pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
@@ -463,25 +491,26 @@ function theme.at_screen_connect(s)
             --wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(7)), "#343434"),
             --arrow("alpha", "#D8DEE9"),
             --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(6)), "#D8DEE9"),
-            arrow("#4C566A", "#BF616A"),
-            wibox.container.background(wibox.container.margin(wibox.widget { volicon, theme.volume.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#BF616A"),
-            arrow("#BF616A", "#D08770"),
-            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#D08770"),
-            arrow("#D08770", "#EBCB8B"),
-            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), "#EBCB8B"),
+            arrow(colors.red, colors.orange),
+            wibox.container.background(wibox.container.margin(wibox.widget { volicon, theme.volume.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), colors.orange),
+
+            arrow(colors.orange, colors.yellow),
+            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), colors.yellow),
+            arrow(colors.yellow, colors.green),
+            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), colors.green),
             --arrow("#81A1C1", "#D8DEE9"),
             --wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#D8DEE9"),
             --arrow("#D8DEE9", "#81A1C1"),
             --wibox.container.background(wibox.container.margin(wibox.widget { weathericon, theme.weather.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#81A1C1"),
-            arrow("#EBCB8B", "#A3BE8C"),
-            wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#A3BE8C"),
-            arrow("#A3BE8C", "#B48EAD"),
-            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#B48EAD"),
-            arrow("#B48EAD", "#BF616A"),
-            wibox.container.background(wibox.container.margin(clock, dpi(4), dpi(8)), "#BF616A"),
-            arrow("#BF616A", theme.bg_normal),
+            arrow(colors.green, colors.pink),
+            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), colors.pink),
+            arrow(colors.pink, colors.frost.aqua),
+            wibox.container.background(wibox.container.margin(clock, dpi(4), dpi(8)), colors.frost.aqua),
+            arrow(colors.frost.aqua, colors.frost.lighter),
             --]]
-            s.mylayoutbox,
+            
+            s.mylayoutbox
+              
         },
     }
 end

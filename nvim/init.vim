@@ -80,7 +80,7 @@ let mapleader=" "
 " Este encontrara una palabra usando 2
 " Letras clave
 nmap <Leader>s <Plug>(easymotion-s2)
-
+nmap <Leader>cl :noh<cr>
 " Nerdtree sirve para poder tener varios
 " archivos abiertos en el mismo vim
 nmap <Leader>nt :NERDTreeFind<CR>
