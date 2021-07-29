@@ -1,6 +1,6 @@
 " Muestra el numero de linea
 set number
-syntax on
+
 " Hace que el mouse se pueda
 set expandtab ts=4 sw=4 ai
 " utilizar
@@ -30,9 +30,9 @@ set sw=2
 "set relativenumber
 set laststatus=2
 set noshowmode
-set termguicolors
-set background=dark
-set t_Co=256
+
+
+
 " Inicializa los plugins
 call plug#begin('~/.vim/plugged')
 
@@ -59,8 +59,8 @@ Plug 'romgrk/barbar.nvim'
 Plug 'luochen1990/rainbow'
 " Termina con los plugins
 call plug#end()
-
 let g:rainbow_active = 1
+
 
 " Pone el esquema de colores como nord
 colorscheme nord
@@ -172,7 +172,7 @@ let bufferline.icons = v:true
 
 " Sets the icon's highlight group.
 " If false, will use nvim-web-devicons colors
-let bufferline.icon_custom_colors = v:false
+let bufferline.icon_custom_colors = v:true
 
 " Configure icons on the bufferline.
 let bufferline.icon_separator_active = '▎'
