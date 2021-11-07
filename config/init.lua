@@ -1,0 +1,6 @@
+require("config.on_error")
+require("config.layouts")
+require("config.keys")
+require("config.rules")
+require("config.signals")
+require("config.declarations").on_init()
