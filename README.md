@@ -14,13 +14,13 @@ cp -r dots/* ~/.config/awesome/
 
 # Configuration
 Change your variables con config/declarations.lua  
-![Declarations](https://imgur.com/79dGBLL)  
+![Declarations](https://i.imgur.com/79dGBLL.png)  
 Modify or add keybinds on config/keys.lua  
-![Keybinds](https://imgur.com/4Sztm2h)  
+![Keybinds](https://i.imgur.com/4Sztm2h.png)  
 Add rules on config/rules.lua  
-![Rules](https://imgur.com/UzeEguH)  
+![Rules](https://i.imgur.com/UzeEguH.png)  
 Change your color scheme inside theme.lua  
-![Colors](https://imgur.com/2X7VCuN)  
+![Colors](https://i.imgur.com/2X7VCuN.png)  
 Change your bar organization inside ui/bar/init.lua  
-![Bar](https://imgur.com/AI6aH4T)  
+![Bar](https://i.imgur.com/AI6aH4T.png)  
 
