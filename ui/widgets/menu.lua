@@ -433,7 +433,7 @@ local fav_apps = {
           add_app(
             function()
               awful.spawn.with_shell(
-                "flameshot gui"
+                vars.screenshot
               )
             end,
             '<span font="JetBrainsMono Nerd Font 16"></span>',
