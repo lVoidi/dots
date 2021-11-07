@@ -2,6 +2,7 @@
 
 # Dependencies
 - picom
+- awesome git version
 - fonts [Roboto](https://fonts.google.com/specimen/Roboto) and [jetbrainsmono](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Bold/complete/JetBrains%20Mono%20Bold%20Nerd%20Font%20Complete.ttf)
 
 # Installation
