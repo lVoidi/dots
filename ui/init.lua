@@ -2,7 +2,6 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
 
-require("ui.titlebars")
 require("ui.bar")
 require("ui.notifications")
 

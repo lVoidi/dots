@@ -31,6 +31,7 @@ theme.bg_urgent     = theme.colors.bg .. "00"
 theme.bg_minimize   = theme.colors.bg .. "00"
 theme.bg_systray    = theme.colors.gray.."00"
 
+theme.hotkeys_modifiers_fg    = theme.colors.fg .. "df"
 theme.fg_normal     = theme.colors.fg
 theme.fg_focus      = theme.colors.purple
 theme.fg_urgent     = theme.colors.red

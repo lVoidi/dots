@@ -1,15 +1,21 @@
 local ruled = require("ruled")
 local awful = require("awful")
+local beautiful = require("beautiful")
+
 ruled.client.connect_signal("request::rules", function()
     -- All clients will match this rule.
     ruled.client.append_rule {
         id         = "global",
         rule       = { },
         properties = {
-            focus     = awful.client.focus.filter,
-            raise     = true,
-            screen    = awful.screen.preferred,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+            border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
+            focus = awful.client.focus.filter,
+            raise = true,
+            buttons = clientbuttons,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+            size_hints_honor = false
         }
     }
 
@@ -22,15 +28,13 @@ ruled.client.connect_signal("request::rules", function()
                 "Arandr", "Blueman-manager", "Gpick", "Kruler", "Sxiv",
                 "Tor Browser", "Wpa_gui", "veromix", "xtightvncviewer"
             },
-            -- Note that the name property shown in xprop might be set slightly after creation of the client
-            -- and the name shown there might not match defined rules here.
             name    = {
-                "Event Tester",  -- xev.
+                "Event Tester",
             },
             role    = {
-                "AlarmWindow",    -- Thunderbird's calendar.
-                "ConfigManager",  -- Thunderbird's about:config.
-                "pop-up",         -- e.g. Google Chrome's (detached) Developer Tools.
+                "AlarmWindow", 
+                "ConfigManager",
+                "pop-up",
             }
         },
         properties = { floating = true }
@@ -38,7 +42,7 @@ ruled.client.connect_signal("request::rules", function()
 
     -- Set telegram media viewer fullscreen
     ruled.client.append_rule {
-        id       = "floating",
+        id       = "Media viewer",
         rule_any = {
             name    = {
                 "Media viewer",
@@ -46,6 +50,8 @@ ruled.client.connect_signal("request::rules", function()
         },
         properties = { fullscreen = true, ontop = true, maximized = true }
     }
+    
+    
 
     -- Add titlebars to normal clients and dialogs
     ruled.client.append_rule {
@@ -53,6 +59,7 @@ ruled.client.connect_signal("request::rules", function()
         rule_any   = { type = { "normal", "dialog" } },
         properties = { titlebars_enabled = true      }
     }
+    
 
 end)
 

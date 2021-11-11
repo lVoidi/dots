@@ -31,6 +31,10 @@ awful.keyboard.append_global_keybindings({
   -- Office
   awful.key({ vars.mod }, "g", function() awful.spawn(vars.office) end,
             {description="Open microsoft teams", group="custom"}),
+  
+  -- File Manager
+  awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager) end,
+            {description="File Manager", group="custom"}),
 
   -- Screenshot
   awful.key({ }, "Print", function() awful.spawn(vars.screenshot) end,
@@ -87,6 +91,58 @@ awful.keyboard.append_global_keybindings({
               {description = "view next", group = "tag"}),
     awful.key({ vars.mod,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
+
+    -- Move tag to the left
+    awful.key({ vars.mod, "Shift" }, "Left",
+      function() 
+        local tag = awful.screen.focused().selected_tag
+        awful.tag.move(tag.index - 1, tag)
+      end,
+      {
+        description = "Move current tag to the left",
+        group = "tag"
+      }
+    ),
+
+    -- Move tag to the right
+    awful.key({ vars.mod, "Shift" }, "Right", 
+      function() 
+        local tag = awful.screen.focused().selected_tag
+        awful.tag.move(tag.index + 1, tag)
+      end,
+      {
+        description = "Move current tag to the right",
+        group = "tag"
+      }
+    ),
+    
+    -- Increment gap
+    awful.key({ "Mod1", "Control" }, "h", 
+      function()
+        local screen = awful.screen.focused()
+        local tag = screen.selected_tag
+        tag.gap = tag.gap + 1
+        awful.layout.arrange(screen)
+      end,
+      {
+        description = "Increment gaps",
+        group = "tag"
+      }
+    ),
+
+    -- Decrement gap
+    awful.key({ "Mod1", "Control" }, "j", 
+      function()
+        local screen = awful.screen.focused()
+        local tag = screen.selected_tag
+        tag.gap = tag.gap - 1
+        awful.layout.arrange(screen)
+      end,
+      {
+        description = "Decrement gaps",
+        group = "tag"
+      }
+    )
 })
 
 -- Focus related keybindings
@@ -248,8 +304,8 @@ client.connect_signal("request::default_keybindings", function()
         awful.key({ vars.mod   }, "q",      function (c) c:kill()                         end,
                 {description = "close", group = "client"}),
 
-        awful.key({ vars.mod, "Shift" }, "s",  awful.client.floating.toggle,
-                {description = "toggle floating", group = "client"}),
+       awful.key({ modkey, "Shift" }, "space",  awful.client.floating.toggle,
+              {description = "toggle floating", group = "client"}), 
 
         awful.key({ vars.mod, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
                 {description = "move to master", group = "client"}),
