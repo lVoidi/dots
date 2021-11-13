@@ -204,7 +204,7 @@ awful.keyboard.append_global_keybindings({
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ vars.mod,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
-    awful.key({ vars.mod, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+    awful.key({ vars.mod, "Control"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 })
 
@@ -304,7 +304,7 @@ client.connect_signal("request::default_keybindings", function()
         awful.key({ vars.mod   }, "q",      function (c) c:kill()                         end,
                 {description = "close", group = "client"}),
 
-       awful.key({ modkey, "Shift" }, "space",  awful.client.floating.toggle,
+       awful.key({ vars.mod, "Shift" }, "space",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}), 
 
         awful.key({ vars.mod, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
