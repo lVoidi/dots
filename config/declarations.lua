@@ -5,7 +5,7 @@ return {
   mod = "Mod4",
   terminal = "kitty",
   file_manager = "nautilus",
-  editor = "vim",
+  editor = "nvim",
   telegram_client = "kotatogram-desktop",
   discord_client = "discord",
   screenshot = "flameshot gui",

@@ -38,7 +38,7 @@ local function add_app(app, text, fg, bg)
             shape_border_width = 5,
             shape_border_color = colors.fg .. "0e",
             -- Sets the shape 
-            shape      = gears.shape.rectangle,
+            shape      = gears.shape.rounded_rect,
             shape_clip = true,
             widget     = wibox.container.background,
         }
