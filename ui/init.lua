@@ -18,7 +18,8 @@ screen.connect_signal("request::wallpaper", function(s)
             },
             valign = "center",
             halign = "center",
-            tiled  = false,
+            tiled  = true,
+            -- content_fill_horizontal = true,
             widget = wibox.container.tile,
         }
     }

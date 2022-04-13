@@ -14,7 +14,7 @@ awful.keyboard.append_global_keybindings({
 
   -- Browser
   awful.key({ vars.mod }, "w", function() awful.spawn(vars.browser) end,
-            {description="Open chromium", group="custom"}),
+            {description="Open browser", group="custom"}),
 
   -- Telegram
   awful.key({ vars.mod }, "t", function() awful.spawn(vars.telegram_client) end,
@@ -33,7 +33,7 @@ awful.keyboard.append_global_keybindings({
             {description="Open microsoft teams", group="custom"}),
   
   -- File Manager
-  awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager) end,
+  awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager .. " /home/mrjakesir/Colegio/") end,
             {description="File Manager", group="custom"}),
 
   -- Screenshot
@@ -41,7 +41,11 @@ awful.keyboard.append_global_keybindings({
             {description="Take screenshot", group="custom"}),
 
   -- Swap between keyboard layouts
-  awful.key({ "Control", alt }, "k", function() awful.spawn.with_shell("sh ~/.config/awesome/scripts/switch_keyboard.sh") end,
+  -- awful.key({ vars.mod }, "space", function() awful.spawn({"bash", "/home/mrjakesir/.config/awesome/scripts/switch_keyboard.sh"}) end,
+  --           {description="Switch keyboard layout", group="custom"}),
+
+  -- System security
+  awful.key({ vars.mod }, "z", function() awful.spawn.with_shell("bash /home/mrjakesir/Documentos/Proyects/security/run.sh") end,
             {description="Switch keyboard layout", group="custom"}),
   
   -- Audio
@@ -60,7 +64,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({ vars.mod }, "x", require("modules.awesome-wm-widgets.logout-popup-widget.logout-popup").launch,
             {description="Logout", group="custom"}),
 
-
+  awful.key({ vars.mod }, "a", function() awful.spawn.with_shell("python /home/mrjakesir/Documentos/Proyects/asistente/main.py") end)
 })
 
 awful.keyboard.append_global_keybindings({
@@ -202,9 +206,9 @@ awful.keyboard.append_global_keybindings({
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ vars.mod, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ vars.mod,           }, "space", function () awful.layout.inc( 1)                end,
+    awful.key({ vars.mod, "Control" }, "Right", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
-    awful.key({ vars.mod, "Control"   }, "space", function () awful.layout.inc(-1)                end,
+    awful.key({ vars.mod, "Control" }, "Left", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 })
 

@@ -1,12 +1,9 @@
 #!/bin/bash 
-CURR=$(cat /tmp/kb_map)
+CURR=$(setxkbmap -print | awk -F"+" '/xkb_symbols/ {print $2}')
 
 if [[ $CURR == 'us' ]]
 then 
-    setxkbmap latam && echo 'latam' > /tmp/kb_map
-    
+    setxkbmap latam
 else
-    setxkbmap us && echo 'us' > /tmp/kb_map
+    setxkbmap us
 fi
-CURR=$(cat /tmp/kb_map)
-notify-send "Layout: $CURR"

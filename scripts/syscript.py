@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-import re, os, distro, subprocess, sys, shutil
+import re, os, subprocess, sys, shutil
 run = lambda cmd: subprocess.run(cmd, stdout=subprocess.PIPE).stdout.decode()
 
 class Fetch:
     def __init__(self):
-        self.getdistro =  distro.linux_distribution()[0]
         self.de        =  os.getenv("DESKTOP_SESSION")
         self.hostname  =  os.getenv("hostname")
         self.username  =  os.getenv("USER")

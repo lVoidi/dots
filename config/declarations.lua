@@ -5,13 +5,13 @@ return {
   mod = "Mod4",
   terminal = "kitty",
   file_manager = "nautilus",
-  editor = "nvim",
+  editor = "vim",
   telegram_client = "kotatogram-desktop",
   discord_client = "discord",
   screenshot = "flameshot gui",
   office = "wps",
   run = "rofi -show drun",
   audio_control = "pavucontrol",
-  browser = "chromium",
+  browser = "microsoft-edge-stable",
 }
 
