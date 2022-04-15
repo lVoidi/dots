@@ -10,8 +10,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 mytextclock = {
-  format = '<span foreground="'..colors.blue..
-           '" font="JetBrainsMono Nerd Font 10"> %H:%M</span>',
+  format = '<span foreground="'..colors.green..
+           '" font="JetBrainsMono Nerd Font 10">%H:%M</span>',
   widget = wibox.widget.textclock
 }
 
@@ -89,7 +89,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
         height = dpi(35),
         widget   = wibox.container.margin({
             layout = wibox.layout.align.horizontal,
-            -- expand = "none",
             left,
             middle,
             right,

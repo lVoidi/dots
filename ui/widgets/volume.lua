@@ -23,7 +23,7 @@ local volume_widget_container = {
               },
               {
                 volume_widget{
-                    main_color=colors.purple,
+                    main_color=colors.green,
                     widget_type = 'horizontal_bar',
                     shape = 'rounded_bar',
                     width = 50,

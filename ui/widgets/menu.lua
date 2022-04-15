@@ -40,7 +40,7 @@ local my_user_widget = wibox.widget {
           {
             {
               markup = '<span foreground="'..colors.green..'">'..username.."</span>",
-              font = "Roboto Bold 40",
+              font = "Roboto Bold 50",
               widget = wibox.widget.textbox
             },
             top = 40,
@@ -54,11 +54,11 @@ local my_user_widget = wibox.widget {
                         ..'">'
                         ..phrase
                         .."</span>",
-              font = 'Roboto 13',  
+              font = 'Roboto 16',  
               widget = wibox.widget.textbox
             },
             left = 40,
-            bottom = 40,
+            bottom = 10,
             widget = wibox.container.margin
           },
           layout = wibox.layout.fixed.vertical
@@ -87,28 +87,22 @@ local clock = wibox.widget {
       {
         format = '<span foreground="'..colors.red..'">%H</span>',
         font = "Roboto 80",
-        align = "top",
         widget = wibox.widget.textclock
       },
       margins = 10,
-      bottom = 0, 
+      bottom = 0,
       widget = wibox.container.margin
     },
     {
       {
-        {
-          top = 15,
-          bottom = 15,
-          widget = wibox.container.margin
-        },
+
         wibox.widget{
           markup = '<span foreground="'..colors.green..'"></span>',
           font = "JetBrainsMono Nerd Font 14",
           widget = wibox.widget.textbox        
         },
         {
-          top = 5,
-          bottom = 5,
+          top = 15,
           widget = wibox.container.margin
         },
         wibox.widget{
@@ -116,11 +110,7 @@ local clock = wibox.widget {
           font = "JetBrainsMono Nerd Font 14",
           widget = wibox.widget.textbox
         }, 
-        {
-          top = 10,
-          bottom = 10,
-          widget = wibox.container.margin
-        },
+
         layout = wibox.layout.fixed.vertical
         
       },
@@ -131,40 +121,24 @@ local clock = wibox.widget {
       {
         format = '<span foreground="'..colors.purple..'">%M</span>',
         font = "Roboto 80",
-        align = "top",
         widget = wibox.widget.textclock
       },
       margins = 10,
       bottom = 0,
       widget = wibox.container.margin
     },
-    layout = wibox.layout.fixed.horizontal
+    layout = wibox.layout.align.horizontal
   },
+  
   layout = wibox.layout.fixed.vertical
 }
 clock = wibox.widget{
-  {
-    { 
-      clock,
-      align = 'center',
-      valign = 'center',
-      widget = wibox.container.place
-    },
-    {
-      {
-        format = '<span foreground="'..colors.blue..'"><i>%A</i></span>',
-        font = "Roboto 20",
-        align = 'top',
-        widget = wibox.widget.textclock
-      },
-      valign = 'top',
-      align = 'center',
-      widget = wibox.container.place
-    },
-    wibox.container.margin(nil, 0, 0, 0, 20),
-    layout = wibox.layout.align.vertical
+  { 
+    clock,
+    halign = 'center',
+    valign = 'bottom',
+    widget = wibox.container.place
   },
-
   bg = colors.gray .. "af",
   shape = function(cr, width, height)
     gears.shape.partially_rounded_rect(
@@ -357,7 +331,7 @@ local fav_apps = {
               )
             end,
             '<span font="JetBrainsMono Nerd Font 20"></span>',
-            colors.fg,
+            "#ffffff",
             colors.gray
           ),
           add_app(

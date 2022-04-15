@@ -32,7 +32,7 @@ awful.util.taglist_buttons = {
 
 function return_taglist(s)
     local unfocus_icon = ""
-    local unfocus_color = colors.blue
+    local unfocus_color = colors.green
 
     local empty_icon = "ﱤ"
     local empty_color = colors.gray
