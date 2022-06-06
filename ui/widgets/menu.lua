@@ -21,7 +21,7 @@ local my_user_widget = wibox.widget {
   {
     {
       {
-        { 
+        {
           {
             {
               image = myavatar,
@@ -54,7 +54,7 @@ local my_user_widget = wibox.widget {
                         ..'">'
                         ..phrase
                         .."</span>",
-              font = 'Roboto 16',  
+              font = 'Roboto 16',
               widget = wibox.widget.textbox
             },
             left = 40,
@@ -69,7 +69,7 @@ local my_user_widget = wibox.widget {
       widget = wibox.container.margin
     },
     bg = colors.gray .. "53",
-    shape = function(cr, width, height) 
+    shape = function(cr, width, height)
       gears.shape.partially_rounded_rect (cr, width, height, true, true, false, false,
       10)
     end,
@@ -467,16 +467,6 @@ logout:connect_signal("button::press", function()
 end)
 
 local function return_menu(screen)
-  local adjustment = function() 
-    if screen.workarea.width <= 1366 then
-      return 0.1
-
-    else
-      return 1
-    end
-  end
-
-  local adjust = adjustment()
 
   local menu_popup = awful.popup {
       widget = {
@@ -487,7 +477,7 @@ local function return_menu(screen)
               my_user_widget,
               clock,
               {
-                bottom = 7*adjust,
+                bottom = 12,
                 widget = wibox.container.margin
               },
               
@@ -503,7 +493,7 @@ local function return_menu(screen)
                           disk,
                           layout = wibox.layout.fixed.vertical
                         },
-                        margins = 7*adjust,
+                        margins = 7,
                         widget = wibox.container.margin
                     },
                     align = 'center',
@@ -523,13 +513,13 @@ local function return_menu(screen)
               layout = wibox.layout.fixed.vertical
             },
             
-            margins = 7*adjust,
+            margins = 7,
             widget = wibox.container.margin
           },
           bg = colors.bg,
           widget = wibox.container.background
         },
-        margins = 3*adjust,
+        margins = 3,
         widget = wibox.container.margin
       },
       shape =function(cr, width, height) 
@@ -540,11 +530,6 @@ local function return_menu(screen)
           15
         )
       end, 
-      -- bg           = colors.bg,
-      -- fg           = colors.fg,
-      -- border_color = colors.gray,
-      -- border_width = 5*adjust,
-      --hide_on_right_click = true,
       ontop        = true,
       visible      = false,
   }
