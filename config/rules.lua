@@ -12,7 +12,6 @@ ruled.client.connect_signal("request::rules", function()
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            buttons = clientbuttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap+awful.placement.no_offscreen,
             size_hints_honor = false
@@ -32,7 +31,7 @@ ruled.client.connect_signal("request::rules", function()
                 "Event Tester",
             },
             role    = {
-                "AlarmWindow", 
+                "AlarmWindow",
                 "ConfigManager",
                 "pop-up",
             }
@@ -50,14 +49,12 @@ ruled.client.connect_signal("request::rules", function()
         },
         properties = { fullscreen = true, ontop = true, maximized = true }
     }
-    
-    
 
     -- Add titlebars to normal clients and dialogs
     ruled.client.append_rule {
         id         = "titlebars",
         rule_any   = { type = { "normal", "dialog" } },
-        properties = { titlebars_enabled = true      }
+        properties = { titlebars_enabled = false      }
     }
     
 

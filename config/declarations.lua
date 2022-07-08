@@ -4,7 +4,7 @@ return {
   path = path,
   mod = "Mod4",
   terminal = "wezterm",
-  file_manager = "nautilus",
+  file_manager = "pcmanfm",
   editor = "nvim",
   telegram_client = "kotatogram-desktop",
   discord_client = "discord",
@@ -12,6 +12,6 @@ return {
   office = "wps",
   run = "rofi -show drun",
   audio_control = "pavucontrol",
-  browser = "microsoft-edge-stable",
+  browser = "vivaldi-stable",
 }
 

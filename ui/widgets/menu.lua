@@ -560,7 +560,7 @@ local function return_menu(screen)
   end)
   }
 
-  return menu 
+  return menu
 end
 
 return return_menu

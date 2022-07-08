@@ -1,15 +1,16 @@
 local gears = require("gears")
 local awful = require("awful")
+local rubato = require("module.rubato")
 local wibox = require("wibox")
 local colors = require("beautiful").colors
 local dpi = require("beautiful.xresources").apply_dpi
 
 awful.util.tagnames = {  
   '<span foreground="'..colors.red..'">爵</span>',
-  '<span foreground="'..colors.orange..'"></span>',
-  '<span foreground="'..colors.yellow..'"></span>',
-  '<span foreground="'..colors.green..'"></span>',
-  '<span foreground="'..colors.blue..'">ﰩ</span>'
+  '<span foreground="'..colors.yellow..'"></span>',
+  '<span foreground="'..colors.green..'"></span>',
+  '<span foreground="'..colors.blue..'"></span>',
+  '<span foreground="'..colors.purple..'">ﰩ</span>'
 }
 
 awful.util.taglist_buttons = {
@@ -32,7 +33,7 @@ awful.util.taglist_buttons = {
 
 function return_taglist(s)
     local unfocus_icon = ""
-    local unfocus_color = colors.green
+    local unfocus_color = colors.blue
 
     local empty_icon = "ﱤ"
     local empty_color = colors.gray
@@ -113,7 +114,13 @@ function return_taglist(s)
             end,
 
             update_callback = function(self, c3, index, objects)
-                update_tags(self, c3)
+                local timed = rubato.timed {
+                  intro = 0.1,
+                  duration = 0.5,
+                  easing = rubato.quadratic,
+                  subscribed = function() update_tags(self, c3) end
+                }
+                timed.target = 1
             end
         },
         buttons = awful.util.taglist_buttons
