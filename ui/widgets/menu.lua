@@ -195,7 +195,7 @@ local ram_bar = wibox.widget {
     top = dpi(8),
     bottom = dpi(8),
   },
-  forced_width  = dpi(500),
+  forced_width  = dpi(450),
   background_color = colors.darker_gray,
   color = colors.green,
   shape         = gears.shape.rounded_bar,
@@ -216,11 +216,12 @@ end)
 
 local ram = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue..'" font="JetBrainsMono Nerd Font 20">󰕳</span>',
+    markup = '<span foreground="'..colors.blue..'" font="JetBrainsMono Nerd Font 20"> </span>',
     widget = wibox.widget.textbox,
   },
+  separate(5),
   ram_bar,
-  expand = "outside",
+  expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
@@ -235,7 +236,7 @@ local cpu_bar = wibox.widget {
     top = dpi(8),
     bottom = dpi(8),
   },
-  forced_width  = dpi(500),
+  forced_width  = dpi(450),
   background_color = colors.darker_gray,
   color = colors.green, --.. "ef",
   shape         = gears.shape.rounded_bar,
@@ -256,12 +257,13 @@ end)
 
 local cpu = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 14"> </span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20">  </span>',
     ellipsize = "none",
     widget = wibox.widget.textbox,
   },
+  separate(5),
   cpu_bar,
-  expand = "outside",
+  expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
@@ -276,7 +278,7 @@ local disk_bar = wibox.widget {
     top = dpi(8),
     bottom = dpi(8),
   },
-  forced_width  = dpi(500),
+  forced_width  = dpi(450),
   background_color = colors.darker_gray,
   color = colors.green, --.. "ef",
   shape         = gears.shape.rounded_bar,
@@ -291,11 +293,12 @@ end)
 
 local disk = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20">   </span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20"> </span>',
     widget = wibox.widget.textbox,
   },
+  separate(5),
   disk_bar,
-  expand = "outside",
+  expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
@@ -435,6 +438,7 @@ local logout = wibox.widget{
   {
     {
       markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16">󰗼 </span><span font="JetBrainsMono Nerd Font 10">Logout</span></span>',
+                          separate(0),
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -490,12 +494,10 @@ local function return_menu(screen)
                   {
                     {
                         {
-                          separate(0),
                           ram,
                           cpu,
                           disk,
-                          separate(0),
-                      spacing = 5,
+                          spacing = 5,
                           layout = wibox.layout.grid.vertical
                         },
                         margins = 7,
