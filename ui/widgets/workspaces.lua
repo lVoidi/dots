@@ -1,6 +1,5 @@
 local gears = require("gears")
 local awful = require("awful")
-local rubato = require("module.rubato")
 local wibox = require("wibox")
 local colors = require("beautiful").colors
 local dpi = require("beautiful.xresources").apply_dpi
@@ -113,15 +112,6 @@ function return_taglist(s)
                 workspace.markup = awful.util.tagnames[index]
             end,
 
-            update_callback = function(self, c3, index, objects)
-                local timed = rubato.timed {
-                  intro = 0.1,
-                  duration = 0.5,
-                  easing = rubato.quadratic,
-                  subscribed = function() update_tags(self, c3) end
-                }
-                timed.target = 1
-            end
         },
         buttons = awful.util.taglist_buttons
     }
