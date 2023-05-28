@@ -11,7 +11,7 @@ return {
   screenshot = "flameshot gui",
   office = "wps",
   run = "rofi -show drun",
-  audio_control = "pavucontrol",
+  audio_control = "pavucontrol-qt",
   browser = "microsoft-edge-stable",
 }
 

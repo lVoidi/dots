@@ -14,7 +14,7 @@ local volume_widget_container = {
               layout=wibox.layout.fixed.horizontal,
               {
                   {
-                      text="",
+                      text=" ",
                       font="JetBrainsMono Nerd Font 15",
                       widget=wibox.widget.textbox
                   },
@@ -30,7 +30,7 @@ local volume_widget_container = {
                     height = 10,
                     bg_color=colors.gray.."df"
                 },
-                top = 3, bottom = 3,
+                top = 1, bottom = 1,
                 widget = wibox.container.margin
               },
           },
