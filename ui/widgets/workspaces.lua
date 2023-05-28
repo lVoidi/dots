@@ -4,12 +4,12 @@ local wibox = require("wibox")
 local colors = require("beautiful").colors
 local dpi = require("beautiful.xresources").apply_dpi
 
-awful.util.tagnames = {  
-  '<span foreground="'..colors.red..'">爵</span>',
-  '<span foreground="'..colors.yellow..'"></span>',
-  '<span foreground="'..colors.green..'"></span>',
-  '<span foreground="'..colors.blue..'"></span>',
-  '<span foreground="'..colors.purple..'">ﰩ</span>'
+awful.util.tagnames = {
+  '<span foreground="'..colors.red..'">󱇶 </span>',
+  '<span foreground="'..colors.yellow..'"> </span>',
+  '<span foreground="'..colors.green..'">󰅨 </span>',
+  '<span foreground="'..colors.blue..'"> </span>',
+  '<span foreground="'..colors.purple..'"> </span>'
 }
 
 awful.util.taglist_buttons = {
@@ -31,14 +31,13 @@ awful.util.taglist_buttons = {
 
 
 function return_taglist(s)
-    local unfocus_icon = ""
-    local unfocus_color = colors.blue
+    local unfocus_icon = " "
+    local item_color = colors.blue
 
-    local empty_icon = "ﱤ"
-    local empty_color = colors.gray
+    local empty_icon = " "
 
-    local focus_icon =  "ﱣ"
-    local focus_color = colors.fg
+    local focus_icon =  " "
+    local focus_color = colors.dim_blue
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
@@ -49,23 +48,25 @@ function return_taglist(s)
         if c3.selected then
             tagicon.text = focus_icon
             self.fg = focus_color
-        elseif #c3:clients() == 0 then
+    elseif #c3:clients() == 0 then
             tagicon.text = empty_icon
-            self.fg = empty_color
+            self.fg = item_color
+
+        
         elseif c3.urgent then
-            tagicon.text = ""
+            tagicon.text = " "
             self.fg = colors.yellow
         else
             if isurgent == false then
                 tagicon.text = unfocus_icon
-                self.fg = unfocus_color 
+                self.fg = item_color
             end
         end
 
         c3:connect_signal("property::urgent",
         function()
             isurgent = true
-            tagicon.text = ""
+            tagicon.text = " "
             self.fg = colors.yellow
         end
         ) 
@@ -79,7 +80,7 @@ function return_taglist(s)
     local icon_taglist = awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
-        layout = {spacing = 0, layout = wibox.layout.fixed.horizontal},
+        layout = {spacing = 0, layout = wibox.layout.flex.horizontal},
         widget_template = {
             {
               {
@@ -94,7 +95,7 @@ function return_taglist(s)
                   valign = "top",
                   widget = wibox.widget.textbox
                 },
-                spacing = 3,
+                spacing = 0,
                 layout = wibox.layout.fixed.horizontal
               },
               id = 'margin_role',
@@ -111,6 +112,12 @@ function return_taglist(s)
                 local workspace = self:get_children_by_id('workspace_role')[1]
                 workspace.markup = awful.util.tagnames[index]
             end,
+      update_callback = function(self, c3, index, objects) --luacheck: no unused args
+
+                update_tags(self, c3)
+                local workspace = self:get_children_by_id('workspace_role')[1]
+                workspace.markup = awful.util.tagnames[index]
+        end,
 
         },
         buttons = awful.util.taglist_buttons

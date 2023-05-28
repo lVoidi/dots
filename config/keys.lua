@@ -33,7 +33,7 @@ awful.keyboard.append_global_keybindings({
             {description="Open microsoft teams", group="custom"}),
   
   -- File Manager
-  awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager .. " /home/mrjakesir/Colegio/") end,
+  awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager) end,
             {description="File Manager", group="custom"}),
 
   -- Screenshot
