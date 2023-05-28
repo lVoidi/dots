@@ -1,5 +1,6 @@
 local gears = require("gears")
 local add_app = require("utils.helpers").app
+local separate = require("utils.helpers").margin
 local beautiful = require("beautiful")
 local colors  = beautiful.colors
 local awful = require("awful")
@@ -154,7 +155,7 @@ clock = wibox.widget{
 local start_widget = wibox.widget{
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16"></span><span font="JetBrainsMono Nerd Font 10"> Launch app</span></span>',
+      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16">󱓟</span><span font="JetBrainsMono Nerd Font 10"> Launch app</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -215,12 +216,12 @@ end)
 
 local ram = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue..'" font="JetBrainsMono Nerd Font 20">﬙</span>',
+    markup = '<span foreground="'..colors.blue..'" font="JetBrainsMono Nerd Font 20">󰕳</span>',
     widget = wibox.widget.textbox,
   },
   ram_bar,
-  spacing = 10,
-  layout = wibox.layout.fixed.horizontal,
+  expand = "outside",
+  layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
 
@@ -255,12 +256,13 @@ end)
 
 local cpu = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20"></span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 14"> </span>',
+    ellipsize = "none",
     widget = wibox.widget.textbox,
   },
   cpu_bar,
-  spacing = 10,
-  layout = wibox.layout.fixed.horizontal,
+  expand = "outside",
+  layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
 
@@ -289,12 +291,12 @@ end)
 
 local disk = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20"></span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20">   </span>',
     widget = wibox.widget.textbox,
   },
   disk_bar,
-  spacing = 14,
-  layout = wibox.layout.fixed.horizontal,
+  expand = "outside",
+  layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 } 
 
@@ -310,7 +312,7 @@ local fav_apps = {
                 myfavoritebrowser.." https://reddit.com/r/unixporn"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.orange,
             colors.gray
           ),
@@ -320,7 +322,7 @@ local fav_apps = {
                 myfavoritebrowser.." https://twitter.com"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.blue,
             colors.gray
           ),
@@ -330,7 +332,7 @@ local fav_apps = {
                 myfavoritebrowser.." https://github.com"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             "#ffffff",
             colors.gray
           ),
@@ -340,7 +342,7 @@ local fav_apps = {
                 myfavoritebrowser.." https://youtube.com"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.red,
             colors.gray
           ),
@@ -350,7 +352,7 @@ local fav_apps = {
                 "discord"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20">ﭮ</span>',
+            '<span font="JetBrainsMono Nerd Font 20">󰙯</span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.fg .. "6a",
             colors.gray
           ),
@@ -360,7 +362,7 @@ local fav_apps = {
                 "telegram"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.dim_blue,
             colors.gray
           ),
@@ -370,7 +372,7 @@ local fav_apps = {
                 "dolphin"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20">ﱮ</span>',
+            '<span font="JetBrainsMono Nerd Font 20">󱢴</span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.yellow,
             colors.gray
           ),
@@ -380,7 +382,7 @@ local fav_apps = {
                 terminal
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.fg.."af",
             colors.gray
           ),
@@ -394,7 +396,7 @@ local fav_apps = {
                 )
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 20"></span>',
+            '<span font="JetBrainsMono Nerd Font 16"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
             colors.orange,
             colors.gray
           ),
@@ -404,12 +406,12 @@ local fav_apps = {
                 "flameshot gui"
               )
             end,
-            '<span font="JetBrainsMono Nerd Font 16"></span>',
+            '<span font="JetBrainsMono Nerd Font 16"> </span>',
             colors.purple,
             colors.gray
           ),
-          spacing = 5,
-          layout = wibox.layout.grid.horizontal
+          spacing = 15,
+          layout = wibox.layout.fixed.horizontal
         },
         align = 'center',
         valign = 'center',
@@ -432,7 +434,7 @@ local logout = wibox.widget{
   
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16"> </span><span font="JetBrainsMono Nerd Font 10">Logout</span></span>',
+      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16">󰗼 </span><span font="JetBrainsMono Nerd Font 10">Logout</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -488,10 +490,13 @@ local function return_menu(screen)
                   {
                     {
                         {
+                          separate(0),
                           ram,
                           cpu,
                           disk,
-                          layout = wibox.layout.fixed.vertical
+                          separate(0),
+                      spacing = 5,
+                          layout = wibox.layout.grid.vertical
                         },
                         margins = 7,
                         widget = wibox.container.margin

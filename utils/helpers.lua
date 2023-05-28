@@ -17,12 +17,12 @@ local function add_app(app, text, fg, bg)
               {
                   {
                     markup = text,
-                    font = "JetBrainsMono Nerd Font 12",
+                    font = "JetBrainsMono Nerd Font 15",
                     widget = wibox.widget.textbox
                   },
                   -- Margin 
                   left   = 10,
-                  spacing = 20,
+                  spacing = 1,
                   top    = 4,
                   bottom = 4,
                   right  = 10,
