@@ -7,6 +7,9 @@
 just Roboto, but you'll need to modify the code. Specificly, menu.lua (that's the only file that uses those 3 last fonts). Just search the names of 
 those fonts and change them by just "Roboto" (obviously you'll need roboto font installed previously).
 
+# Before you install it 
+- Make sure that the wallpaper fits with your monitor. In case it doesn't, change it in images/global/wallpaper.png. 
+
 # Installation
 ```bash
 git clone https://github.com/MrJakeSir/dots
