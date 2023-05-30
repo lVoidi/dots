@@ -1,11 +1,8 @@
 local gears = require("gears")
 local volume_widget = require('modules.awesome-wm-widgets.volume-widget.volume')
-local add_app = require("utils.helpers").app
-local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local colors = beautiful.colors
-local dpi   = require("beautiful.xresources").apply_dpi
 
 local volume_widget_container = {
         {

@@ -1,4 +1,3 @@
-local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local colors = require("beautiful").colors
@@ -30,7 +29,7 @@ awful.util.taglist_buttons = {
   }
 
 
-function return_taglist(s)
+local function return_taglist(s)
     local unfocus_icon = " "
     local item_color = colors.blue
 
@@ -51,8 +50,6 @@ function return_taglist(s)
     elseif #c3:clients() == 0 then
             tagicon.text = empty_icon
             self.fg = item_color
-
-        
         elseif c3.urgent then
             tagicon.text = " "
             self.fg = colors.yellow
@@ -69,67 +66,60 @@ function return_taglist(s)
             tagicon.text = " "
             self.fg = colors.yellow
         end
-        ) 
-
-        
+        )
     end
-    
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
-  
-    local icon_taglist = awful.widget.taglist {
-        screen = s,
-        filter = awful.widget.taglist.filter.all,
-        layout = {spacing = 0, layout = wibox.layout.flex.horizontal},
-        widget_template = {
-            {
-              {
-                {
-                  id = 'workspace_role',
-                  font = "JetBrainsMono Nerd Font 16",
-                  widget = wibox.widget.textbox
-                },
-                {
-                  id = 'icon_role',
-                  font = "JetBrainsMono Nerd Font 8",
-                  valign = "top",
-                  widget = wibox.widget.textbox
-                },
-                spacing = 0,
-                layout = wibox.layout.fixed.horizontal
-              },
-              id = 'margin_role',
-              top = dpi(0),
-              bottom = dpi(0),
-              left = dpi(2),
-              right = dpi(2),
-              widget = wibox.container.margin
-            },
-            id = 'background_role',
-            widget = wibox.container.background,
-            create_callback = function(self, c3, index, objects)
-                update_tags(self, c3)
-                local workspace = self:get_children_by_id('workspace_role')[1]
-                workspace.markup = awful.util.tagnames[index]
-            end,
-      update_callback = function(self, c3, index, objects) --luacheck: no unused args
-
-                update_tags(self, c3)
-                local workspace = self:get_children_by_id('workspace_role')[1]
-                workspace.markup = awful.util.tagnames[index]
-        end,
-
+local icon_taglist = awful.widget.taglist {
+  screen = s,
+  filter = awful.widget.taglist.filter.all,
+  layout = {spacing = 0, layout = wibox.layout.flex.horizontal},
+  widget_template = {
+    {
+      {
+        {
+          id = 'workspace_role',
+          font = "JetBrainsMono Nerd Font 16",
+          widget = wibox.widget.textbox
         },
-        buttons = awful.util.taglist_buttons
-    }
+        {
+          id = 'icon_role',
+          font = "JetBrainsMono Nerd Font 8",
+          valign = "top",
+          widget = wibox.widget.textbox
+        },
+        spacing = 0,
+        layout = wibox.layout.fixed.horizontal
+      },
+      id = 'margin_role',
+      top = dpi(0),
+      bottom = dpi(0),
+      left = dpi(2),
+      right = dpi(2),
+      widget = wibox.container.margin
+    },
+    id = 'background_role',
+    widget = wibox.container.background,
+    create_callback = function(self, c3, index, _)
+      update_tags(self, c3)
+      local workspace = self:get_children_by_id('workspace_role')[1]
+      workspace.markup = awful.util.tagnames[index]
+    end,
+    update_callback = function(self, c3, index, _) --luacheck: no unused args
+      update_tags(self, c3)
+      local workspace = self:get_children_by_id('workspace_role')[1]
+      workspace.markup = awful.util.tagnames[index]
+    end,
 
+    },
+    buttons = awful.util.taglist_buttons
+  }
     local taglist = wibox.widget{
       {
-          
-          icon_taglist,
-          left = 7,
-          right = 7,
-          widget = wibox.container.margin
+        icon_taglist,
+        left = 7,
+        right = 7,
+        widget = wibox.container.margin
       },
       margins = 1,
       widget = wibox.container.margin

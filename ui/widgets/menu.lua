@@ -165,7 +165,10 @@ clock = wibox.widget{
 local start_widget = wibox.widget{
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 26">󱓟 </span><span font="Collegerion 20"> Launch</span></span>',
+      markup = '<span foreground="'
+        ..colors.gray..
+        '"><span font="JetBrainsMono Nerd Font 26">󱓟 '
+        ..'</span><span font="Collegerion 20"> Launch</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -174,7 +177,7 @@ local start_widget = wibox.widget{
     widget = wibox.container.margin
   },
   bg = colors.blue .. "df",
-  shape = function(cr, width, height) 
+  shape = function(cr, width, height)
     gears.shape.partially_rounded_rect(
       cr,  width, height,
       true, true,
@@ -217,11 +220,11 @@ local used_ram_script = [[
   free -m | grep 'Mem:' | awk '{printf \"%d@@%d@\", $7, $2}'
   "]]
 
-awful.widget.watch(used_ram_script, 20, function(widget, stdout)
+awful.widget.watch(used_ram_script, 20, function(_, stdout)
                      local available = stdout:match('(.*)@@')
                      local total = stdout:match('@@(.*)@')
                      local used_ram_percentage = (total - available) / total * 100
-                     ram_bar.value = used_ram_percentage 
+                     ram_bar.value = used_ram_percentage
 end)
 
 local ram = wibox.widget{
@@ -234,9 +237,7 @@ local ram = wibox.widget{
   expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
-} 
-
-
+}
 
 -- CPU BAR
 local cpu_bar = wibox.widget {
@@ -258,11 +259,11 @@ local cpu_idle_script = [[
   vmstat 1 2 | tail -1 | awk '{printf \"%d\", $15}'
   "]]
 
-awful.widget.watch(cpu_idle_script, 20, function(widget, stdout)
+awful.widget.watch(cpu_idle_script, 20, function(_, stdout)
   -- local cpu_idle = stdout:match('+(.*)%.%d...(.*)%(')
   local cpu_idle = stdout
   cpu_idle = string.gsub(cpu_idle, '^%s*(.-)%s*$', '%1')
-  cpu_bar.value = 100-tonumber(cpu_idle) 
+  cpu_bar.value = 100-tonumber(cpu_idle)
 end)
 
 local cpu = wibox.widget{
@@ -276,9 +277,7 @@ local cpu = wibox.widget{
   expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
-} 
-
-
+}
 
 local disk_bar = wibox.widget {
   max_value     = 1,
@@ -297,8 +296,8 @@ local disk_bar = wibox.widget {
 
 local disk_idle_script = "python3 "..dir.."/scripts/syscript.py -u s"
 
-awful.widget.watch(disk_idle_script, 20, function(widget, stdout)
-  disk_bar.value = tonumber(stdout) 
+awful.widget.watch(disk_idle_script, 20, function(_, stdout)
+  disk_bar.value = tonumber(stdout)
 end)
 
 local disk = wibox.widget{
@@ -311,8 +310,7 @@ local disk = wibox.widget{
   expand = "inside",
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
-} 
-
+}
 
 local fav_apps = {
   {
@@ -434,7 +432,6 @@ local fav_apps = {
       widget = wibox.container.margin
     },
     bg = colors.gray .. "85",
-    --shape = gears.shape.rounded_rect,
     widget = wibox.container.background
 
   },
@@ -444,11 +441,13 @@ local fav_apps = {
 
 
 local logout = wibox.widget{
-  
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 26">󰗼 </span><span font="Collegerion 20">Logout</span></span>',
-                          separate(0),
+      markup = '<span foreground="'
+        ..colors.gray..
+        '"><span font="JetBrainsMono Nerd Font 26">󰗼 '
+        ..'</span><span font="Collegerion 20">Logout</span></span>',
+      separate(0),
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -457,7 +456,7 @@ local logout = wibox.widget{
     widget = wibox.container.margin
   },
   bg = colors.red,
-  shape = function(cr, width, height) 
+  shape = function(cr, width, height)
     gears.shape.partially_rounded_rect(
       cr, width, height,
       false, false,
@@ -479,16 +478,13 @@ end)
 logout:connect_signal("button::press", function()
   logout.bg = colors.fg
   require("modules.awesome-wm-widgets.logout-popup-widget.logout-popup").launch()
-  
 end)
 
 local function return_menu(screen)
-
   local menu_popup = awful.popup {
       widget = {
         {
           {
-            
             {
               my_user_widget,
               clock,
@@ -496,7 +492,6 @@ local function return_menu(screen)
                 bottom = 12,
                 widget = wibox.container.margin
               },
-              
               {
                 start_widget,
                 fav_apps,
@@ -525,11 +520,8 @@ local function return_menu(screen)
                 logout,
                 layout = wibox.layout.fixed.vertical
               },
-              
-              
               layout = wibox.layout.fixed.vertical
             },
-            
             margins = 7,
             widget = wibox.container.margin
           },
@@ -539,22 +531,20 @@ local function return_menu(screen)
         margins = 3,
         widget = wibox.container.margin
       },
-      shape =function(cr, width, height) 
+      shape =function(cr, width, height)
         gears.shape.partially_rounded_rect(
           cr, width, height,
           false, false,
           true,  false,
           15
         )
-      end, 
+      end,
       ontop        = true,
       visible      = false,
   }
-  
   local menu = wibox.widget{
-    
     {
-        { 
+        {
             image  = dir .. "/images/global/awesome.svg",
             resize = true,
             widget = wibox.widget.imagebox
@@ -568,7 +558,7 @@ local function return_menu(screen)
     if menu_popup.visible then
       menu_popup.visible = false
     else
-      menu_popup.x = screen.workarea.x 
+      menu_popup.x = screen.workarea.x
       menu_popup.y = screen.workarea.y
       --menu_popup.y = 50
       --menu_popup:move_next_to(mouse.current_widget_geometry)
