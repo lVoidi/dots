@@ -27,7 +27,7 @@ local volume_widget_container = {
                     widget_type = 'horizontal_bar',
                     shape = 'rounded_bar',
                     width = 50,
-                    height = 10,
+                    height = 7,
                     bg_color=colors.gray.."df"
                 },
                 top = 1, bottom = 1,

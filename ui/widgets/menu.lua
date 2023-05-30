@@ -10,14 +10,13 @@ local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
 
-local username = "Jake"
+local username = "lVoidi"
 local myavatar = dir .. "/images/global/avatar.jpg"
 
 local myfavoritebrowser = vars.browser
 local terminal          = vars.terminal
 local editor            = vars.editor
-local phrase            = "Prove them wrong ^^"
-
+local phrase            = "The perfect courtier"
 local my_user_widget = wibox.widget {
   {
     {
@@ -26,22 +25,22 @@ local my_user_widget = wibox.widget {
           {
             {
               image = myavatar,
-              forced_width = 160,
-              forced_height= 160,
+              forced_width = 200,
+              forced_height= 200,
               widget = wibox.widget.imagebox
             },
             shape = gears.shape.rounded_bar,
             shape_clip = true,
             widget = wibox.container.background
           },
-          margins = 5,
           widget = wibox.container.margin
         },
         {
           {
             {
-              markup = '<span foreground="'..colors.green..'">'..username.."</span>",
-              font = "Roboto Bold 50",
+              markup = '<span foreground="'..colors.red..'">'..username.."</span>",
+              font = "Krinkes Decor PERSONAL USE 50",
+              forced_height = 80,
               widget = wibox.widget.textbox
             },
             top = 40,
@@ -54,8 +53,9 @@ local my_user_widget = wibox.widget {
                         ..colors.yellow
                         ..'">'
                         ..phrase
-                        .."</span>",
-              font = 'Roboto 16',
+                        .."  </span>",
+              font = 'Krinkes Decor PERSONAL USE 35',
+              forced_height = 60,
               widget = wibox.widget.textbox
             },
             left = 40,
@@ -86,8 +86,8 @@ local clock = wibox.widget {
   {
     {
       {
-        format = '<span foreground="'..colors.red..'">%H</span>',
-        font = "Roboto 80",
+        format = '<span foreground="'..colors.green..'">%H</span><span font="Varsity Regular 50"> </span>',
+        font = "Varsity Regular 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
@@ -98,7 +98,7 @@ local clock = wibox.widget {
       {
 
         wibox.widget{
-          markup = '<span foreground="'..colors.green..'"></span>',
+          markup = '<span foreground="'..colors.yellow..'"> </span>',
           font = "JetBrainsMono Nerd Font 14",
           widget = wibox.widget.textbox        
         },
@@ -107,7 +107,7 @@ local clock = wibox.widget {
           widget = wibox.container.margin
         },
         wibox.widget{
-          markup = '<span foreground="'..colors.yellow..'"></span>',
+          markup = '<span foreground="'..colors.yellow..'"> </span>',
           font = "JetBrainsMono Nerd Font 14",
           widget = wibox.widget.textbox
         }, 
@@ -120,17 +120,27 @@ local clock = wibox.widget {
     },
     {
       {
-        format = '<span foreground="'..colors.purple..'">%M</span>',
-        font = "Roboto 80",
+        format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.purple..'">%M</span>',
+        font = "Varsity Regular 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
       bottom = 0,
       widget = wibox.container.margin
     },
+    
     layout = wibox.layout.align.horizontal
   },
-  
+  {
+      {
+        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B %e </i></span>',
+        font = "Collegerion 30",
+        forced_height = 40,
+        widget = wibox.widget.textclock, 
+        halign = "center"
+      },
+      widget = wibox.container.margin
+  },
   layout = wibox.layout.fixed.vertical
 }
 clock = wibox.widget{
@@ -155,7 +165,7 @@ clock = wibox.widget{
 local start_widget = wibox.widget{
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16">󱓟</span><span font="JetBrainsMono Nerd Font 10"> Launch app</span></span>',
+      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 26">󱓟 </span><span font="Collegerion 20"> Launch</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -437,7 +447,7 @@ local logout = wibox.widget{
   
   {
     {
-      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 16">󰗼 </span><span font="JetBrainsMono Nerd Font 10">Logout</span></span>',
+      markup = '<span foreground="'..colors.gray..'"><span font="JetBrainsMono Nerd Font 26">󰗼 </span><span font="Collegerion 20">Logout</span></span>',
                           separate(0),
       align = 'center',
       valign = 'center',
