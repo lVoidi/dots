@@ -25,3 +25,10 @@ Change your color scheme inside theme.lua
 Change your bar organization inside ui/bar/init.lua  
 ![Bar](https://i.imgur.com/AI6aH4T.png)  
 
+
+## It's screenshot time! 
+![Desktop example 1](https://i.imgur.com/NdGAs1r.png)
+![Desktop example 2](https://i.imgur.com/Sw6qvGK.png)
+![Desktop example 3](https://imgur.com/DoVRpC7.png)
+![Desktop example 4](https://imgur.com/YhovkuF.png)
+

@@ -17,7 +17,7 @@ class Fetch:
         return run(["uname", "-r"])
     
     def disk(self):
-        total, used, free = shutil.disk_usage("/home")
+        total, used, _ = shutil.disk_usage("/home")
         usage_percent = (used // (2**30))/(total // (2**30))
         return usage_percent
 
@@ -25,7 +25,7 @@ class Fetch:
         cmd_result = run(["cat", "/proc/cpuinfo"])
         MODEL_NAME = re.findall("model name.+:(.+)" , cmd_result)[0]
 
-        MAX_SPEED = re.findall("\d.\d+GHz", cmd_result)[0]
+        MAX_SPEED = re.findall(r"\d.\d+GHz", cmd_result)[0]
 
         CORES = re.findall("cpu cores.+:(.+)", cmd_result)[0]
         
@@ -47,7 +47,7 @@ class Fetch:
         KEYS = ["TOTAL", "USED", "FREE", "SHARED", "BUFF/CACHE", "AVAILABLE"]
         RESULT = {}
         output = run(["free", "-m"])
-        result_regex = re.findall("Mem:(.+\d)", output)[0].split()
+        result_regex = re.findall(r"Mem:(.+\d)", output)[0].split()
 
         for i in range(len(result_regex)):
             RESULT[KEYS[i]] = result_regex[i]
