@@ -4,7 +4,8 @@
 - picom
 - awesome git version
 - These are the fonts you need: JetBrainsMono Nerd Font, FiraCode Nerd Font, Krinkes, Varsity and Collegerion. You can replace the last three ones with
-just Roboto, but you'll need to modify the code. Specificly, menu.lua (that's the only file that uses those 3 last fonts).
+just Roboto, but you'll need to modify the code. Specificly, menu.lua (that's the only file that uses those 3 last fonts). Just search the names of 
+those fonts and change them by just "Roboto" (obviously you'll need roboto font installed previously).
 
 # Installation
 ```bash
