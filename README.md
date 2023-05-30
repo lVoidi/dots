@@ -3,7 +3,8 @@
 # Dependencies
 - picom
 - awesome git version
-- fonts [Roboto](https://fonts.google.com/specimen/Roboto) and [jetbrainsmono](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/Ligatures/Bold/complete/JetBrains%20Mono%20Bold%20Nerd%20Font%20Complete.ttf)
+- These are the fonts you need: JetBrainsMono Nerd Font, FiraCode Nerd Font, Krinkes, Varsity and Collegerion. You can replace the last three ones with
+just Roboto, but you'll need to modify the code. Specificly, menu.lua (that's the only file that uses those 3 last fonts).
 
 # Installation
 ```bash
