@@ -17,7 +17,7 @@ local myavatar = dir .. "/images/global/avatar.jpg"
 local myfavoritebrowser = vars.browser
 local terminal          = vars.terminal
 local editor            = vars.editor
-local phrase            = "The perfect courtier"
+local phrase            = "LET HIM COOK"
 local my_user_widget = wibox.widget {
   {
     {
@@ -40,7 +40,8 @@ local my_user_widget = wibox.widget {
           {
             {
               markup = '<span foreground="'..colors.red..'">'..username.."</span>",
-              font = "Krinkes Decor PERSONAL USE 50",
+              -- font = "Krinkes Decor PERSONAL USE 50",
+              font = "Roboto 60",
               forced_height = 80,
               widget = wibox.widget.textbox
             },
@@ -55,7 +56,8 @@ local my_user_widget = wibox.widget {
                         ..'">'
                         ..phrase
                         .."  </span>",
-              font = 'Krinkes Decor PERSONAL USE 35',
+              -- font = 'Krinkes Decor PERSONAL USE 35',
+              font = "Roboto 35",
               forced_height = 60,
               widget = wibox.widget.textbox
             },
@@ -88,7 +90,8 @@ local clock = wibox.widget {
     {
       {
         format = '<span foreground="'..colors.green..'">%H</span><span font="Varsity Regular 50"> </span>',
-        font = "Varsity Regular 120",
+        font = "Roboto 120",
+        -- font = "Varsity Regular 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
@@ -122,7 +125,9 @@ local clock = wibox.widget {
     {
       {
         format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.purple..'">%M</span>',
-        font = "Varsity Regular 120",
+        -- font = "Varsity Regular 120",
+
+        font = "Roboto 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
@@ -134,8 +139,10 @@ local clock = wibox.widget {
   },
   {
       {
-        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B %e </i></span>',
-        font = "Collegerion 30",
+        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B%e </i></span>',
+        -- font = "Collegerion 30",
+
+        font = "Roboto 30",
         forced_height = 40,
         widget = wibox.widget.textclock, 
         halign = "center"
@@ -169,7 +176,7 @@ local start_widget = wibox.widget{
       markup = '<span foreground="'
         ..colors.gray..
         '"><span font="JetBrainsMono Nerd Font 26">󱓟 '
-        ..'</span><span font="Collegerion 20"> Launch</span></span>',
+        ..'</span><span font="Roboto 20"> Launch</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -447,7 +454,7 @@ local logout = wibox.widget{
       markup = '<span foreground="'
         ..colors.gray..
         '"><span font="JetBrainsMono Nerd Font 26">󰗼 '
-        ..'</span><span font="Collegerion 20">Logout</span></span>',
+        ..'</span><span font="Roboto 20">Logout</span></span>',
       separate(0),
       align = 'center',
       valign = 'center',
