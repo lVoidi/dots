@@ -4,7 +4,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local volume_widget = require('modules.awesome-wm-widgets.volume-widget.volume')
 local alt = "Mod1"
 
-
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 4, awful.tag.viewprev),
     awful.button({ }, 5, awful.tag.viewnext),
@@ -188,8 +187,9 @@ awful.keyboard.append_global_keybindings({
 
 -- Layout related keybindings
 awful.keyboard.append_global_keybindings({
-    awful.key({ vars.mod, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
+    awful.key({ vars.mod, "Shift"   }, "j", function () awful.client.swap.byidx( -1) end,
               {description = "swap with next client by index", group = "client"}),
+
     awful.key({ vars.mod, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ vars.mod,           }, "u", awful.client.urgent.jumpto,

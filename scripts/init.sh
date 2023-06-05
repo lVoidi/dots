@@ -5,10 +5,11 @@ function run {
     $@&
   fi
 }
-xrandr --output LVDS1 --mode 1366x768 --pos 0x156 --rotate normal --output DP1 --off --output HDMI1 --off --output VGA1 --primary --mode 1920x1080 --pos 1366x0 --rotate normal --output VIRTUAL1 --off
+xrandr -r 75
 setxkbmap us -variant altgr-intl
 run /bin/nm-applet
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 run picom
 run mpd
+run pasystray
 # run nitrogen --restore

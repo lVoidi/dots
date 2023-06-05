@@ -6,7 +6,7 @@ return {
   terminal = "alacritty",
   file_manager = "pcmanfm",
   editor = "nvim",
-  telegram_client = "telegram-desktop",
+  telegram_client = "kotatogram-desktop",
   discord_client = "discord",
   screenshot = "flameshot gui",
   office = "wps",

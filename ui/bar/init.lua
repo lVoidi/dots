@@ -47,7 +47,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         end)
 
     if s.index > 1 then 
-      s.systray = nil 
+      s.systray = nil
     end
 
     local left = {

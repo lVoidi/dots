@@ -1,4 +1,5 @@
 local gears = require("gears")
+local rubato = require("modules.rubato")
 local add_app = require("utils.helpers").app
 local separate = require("utils.helpers").margin
 local beautiful = require("beautiful")
@@ -10,7 +11,7 @@ local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
 
-local username = "lVoidi"
+local username = "Void"
 local myavatar = dir .. "/images/global/avatar.jpg"
 
 local myfavoritebrowser = vars.browser
@@ -539,8 +540,9 @@ local function return_menu(screen)
           15
         )
       end,
-      ontop        = true,
-      visible      = false,
+      ontop           = true,
+      visible         = false,
+      is_visible      = false,
   }
   local menu = wibox.widget{
     {
@@ -555,14 +557,34 @@ local function return_menu(screen)
     },
     widget     = wibox.container.background,
     buttons = awful.button({}, 1, function()
-    if menu_popup.visible then
-      menu_popup.visible = false
-    else
-      menu_popup.x = screen.workarea.x
-      menu_popup.y = screen.workarea.y
-      --menu_popup.y = 50
-      --menu_popup:move_next_to(mouse.current_widget_geometry)
+    menu_popup.y = screen.workarea.y
+    menu_popup.x = -1000
+    if menu_popup.is_visible == false then
       menu_popup.visible = true
+      menu_popup.is_visible = true
+      local timed_movement_in = rubato.timed {
+          duration = 3/4, --half a second
+          intro = 1/4, --one third of duration
+          rate = 75,
+          easing = rubato.quadratic,
+          subscribed = function(pos)
+            menu_popup.x = menu_popup.width*(pos-1)
+          end
+      }
+      timed_movement_in.target = 1
+
+     else
+      local timed_movement_out = rubato.timed {
+          duration = 3/4, --half a second
+          intro = 1/4, --one third of duration
+          rate = 75,
+          easing = rubato.quadratic,
+          subscribed = function(pos)
+            menu_popup.x = -menu_popup.width*pos
+          end
+      }
+      timed_movement_out.target = 1
+      menu_popup.is_visible = false
     end
   end)
   }
