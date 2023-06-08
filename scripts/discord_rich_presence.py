@@ -31,8 +31,6 @@ def get_status() -> Tuple:
 
     get_state = subprocess.run("playerctl -p spotify status", shell=True, capture_output=True).stdout.decode().lower()
     
-
-
     if "paused" in get_state:
         return ("Paused", paused)
 
@@ -65,7 +63,7 @@ def main():
                 pid=os.getpid(),
                 state=get_current_song_spotify(), 
                 details=neovim_state(), 
-                large_image="https://i.imgur.com/1apQVPT.png", 
+                large_image="https://pbs.twimg.com/profile_images/1541631471387033600/c-RwIyV4_400x400.jpg", 
                 large_text=get_current_uptime(), 
                 small_text=status[0],
                 small_image=status[1],
