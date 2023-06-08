@@ -14,7 +14,7 @@ def is_discord_opened() -> bool:
     try:
         subprocess.run("pgrep Discord", shell=True, check=True)
         return True
-    except: 
+    except subprocess.CalledProcessError: 
         return False
 
 def neovim_state() -> str: 
