@@ -10,6 +10,13 @@ def get_current_uptime() -> str:
     output = subprocess.run(["uptime", "-p"], stdout=subprocess.PIPE, text=True).stdout
     return output.capitalize() 
 
+def is_discord_opened() -> bool:
+    try:
+        subprocess.run("pgrep Discord", shell=True, check=True)
+        return True
+    except: 
+        return False
+
 def neovim_state() -> str: 
     output = subprocess.run("pgrep nvim", capture_output=True, shell=True)
     if output.stdout:
@@ -20,13 +27,19 @@ def get_status() -> Tuple:
     
     paused = "https://i.imgur.com/2GophkL.png"
     playing = "https://i.imgur.com/2zsBGMB.png"
+    idling = "https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png"
 
-    get_state = subprocess.run("playerctl -p spotify status", shell=True, capture_output=True)
+    get_state = subprocess.run("playerctl -p spotify status", shell=True, capture_output=True).stdout.decode().lower()
     
-    if "paused" in get_state.stdout.decode().lower():
+
+
+    if "paused" in get_state:
         return ("Paused", paused)
 
-    return ("Playing", playing)
+    elif "playing" in get_state:
+        return ("Playing", playing)
+
+    return ("Idling", idling)
 
 
 def get_current_song_spotify() -> str:
@@ -38,25 +51,39 @@ def get_current_song_spotify() -> str:
 
     return "🎧 Playing: " + output.stdout.decode()
 
-presence = pypresence.Presence(client_id="1115295203423690833")
-presence.connect()
+def main():
 
-while 1:
-    try:
-        status = get_status()
-        presence.update(
-            pid=os.getpid(),
-            state=get_current_song_spotify(), 
-            details=neovim_state(), 
-            large_image="https://i.imgur.com/1apQVPT.png", 
-            small_text=status[0],
-            small_image=status[1],
-            large_text=get_current_uptime(), 
-            buttons=[{"label": "lVoidi github", "url": "https://github.com/lvoidi"}]
-        )
+    presence = pypresence.Presence(client_id="1115295203423690833")
+    presence.connect()
+    
+    print("Succesfully connected to the client")
 
-    except KeyboardInterrupt:
-        print("Closing program...")
-        presence.close()
-        presence.clear(os.getpid())
-    time.sleep(1)
+    while True:
+        try:
+            status = get_status()
+            presence.update(
+                pid=os.getpid(),
+                state=get_current_song_spotify(), 
+                details=neovim_state(), 
+                large_image="https://i.imgur.com/1apQVPT.png", 
+                large_text=get_current_uptime(), 
+                small_text=status[0],
+                small_image=status[1],
+                buttons=[{"label": "lVoidi github", "url": "https://github.com/lvoidi"}]
+            )
+
+        except KeyboardInterrupt:
+            print("Closing program...")
+            presence.close()
+            presence.clear(os.getpid())
+
+if is_discord_opened():
+    main()
+else: 
+    while not is_discord_opened():
+        try:
+            main()
+        except Exception as e: 
+            print(e)
+        print("Discord is not opened. Trying again in 10 seconds")
+        time.sleep(10)
