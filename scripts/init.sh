@@ -8,7 +8,7 @@ function run {
 function discord_rpc {
   if ! pgrep python3 ;
   then 
-    python3 ~/.config/awesome/scripts/discord_rich_presence.py
+    nohup python3 ~/.config/awesome/scripts/discord_rich_presence.py&
   fi
 }
 xrandr -r 75

@@ -69,6 +69,7 @@ def main():
                 small_image=status[1],
                 buttons=[{"label": "lVoidi github", "url": "https://github.com/lvoidi"}]
             )
+            time.sleep(3)
 
         except KeyboardInterrupt:
             print("Closing program...")
@@ -79,9 +80,6 @@ if is_discord_opened():
     main()
 else: 
     while not is_discord_opened():
-        try:
-            main()
-        except Exception as e: 
-            print(e)
         print("Discord is not opened. Trying again in 10 seconds")
         time.sleep(10)
+    main()
