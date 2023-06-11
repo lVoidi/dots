@@ -6,15 +6,35 @@ local helpers = require("utils.helpers")
 local colors = require("beautiful").colors
 local gears = require("gears")
 
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- Create a textclock widget
-mytextclock = {
-  format = '<span foreground="'..colors.green..
-           '" font="JetBrainsMono Nerd Font 10">%H:%M</span>',
-  widget = wibox.widget.textclock
-}
+local mytextclock = {
+  {
+    {
+      {
 
+        format = '<span foreground="'..colors.green..
+                 '" font="SF Mono 10">%H </span>',
+        widget = wibox.widget.textclock
+      },
+      {
+        format = '<span foreground="'..colors.green..
+               '" font="SF Mono 10">%M </span>',
+        widget = wibox.widget.textclock
+      },
+      layout = wibox.layout.align.vertical
+    },
+    left = 15,
+    right = 8,
+    widget = wibox.container.margin,
+  },
+  shape = function(cr, width, height)
+      gears.shape.partially_rounded_rect(
+        cr, width, height, true, false, true, false, 30
+      )
+  end,
+  bg = colors.gray,
+  widget = wibox.container.background
+}
 screen.connect_signal("request::desktop_decoration", function(s)
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
@@ -39,12 +59,37 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
     s.mytaglist = widgets.tags(s)
     s.mytasklist = widgets.tasks(s)
-    s.systray = wibox.container.background(wibox.container.margin(wibox.widget.systray(),
-      7, 7, 5, 6), colors.gray, function(cr, width, height)
+    s.systray = wibox.container.background({
+        wibox.container.margin(
+          {
+            wibox.widget.systray(),
+            layout = wibox.layout.fixed.horizontal
+          },
+          7, 7, 5, 6
+        ),
+        helpers.margin(2),
+        {
+          {
+            s.mylayoutbox,
+            left = 10,
+            right = 5,
+            widget = wibox.container.margin
+          },
+          bg = colors.darker_gray,
+          shape = function(cr, width, height)
+            gears.shape.partially_rounded_rect(
+              cr, width, height, true, false, false, true, 30
+            )
+          end,
+          widget = wibox.container.background
+        },
+        layout = wibox.layout.fixed.horizontal
+      },
+      colors.gray, function(cr, width, height)
           gears.shape.partially_rounded_rect(
             cr, width, height, true, false, false, true, 30
           )
-        end)
+      end)
 
     if s.index > 1 then 
       s.systray = nil
@@ -53,8 +98,20 @@ screen.connect_signal("request::desktop_decoration", function(s)
     local left = {
       {
         {
-          helpers.margin(5),
-          widgets.menu(s),
+          {
+            {
+              widgets.menu(s),
+              right = 6,
+              widget = wibox.container.margin
+            },
+            bg = colors.darker_gray,
+            shape = function(cr, width, height)
+              gears.shape.partially_rounded_rect(
+                cr, width, height, false, true, true, false, 30
+              )
+            end,
+            widget = wibox.container.background
+          },
           s.mytaglist,
           layout = wibox.layout.fixed.horizontal,
         },
@@ -70,13 +127,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
       layout = wibox.layout.fixed.horizontal
     }
 
-    local middle = s.mytasklist
+    local middle = mytextclock
     local right = {
-      mytextclock,
       helpers.margin(5),
-      widgets.volume,
-      helpers.margin(5),
-      s.mylayoutbox,
+      -- widgets.volume,
       helpers.margin(5),
       s.systray,
       layout = wibox.layout.fixed.horizontal
@@ -89,6 +143,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         height = dpi(35),
         widget   = wibox.container.margin({
             layout = wibox.layout.align.horizontal,
+            expand = "none",
             left,
             middle,
             right,

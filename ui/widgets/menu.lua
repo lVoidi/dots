@@ -551,6 +551,7 @@ local function return_menu(screen)
       visible         = false,
       is_visible      = false,
   }
+
   local menu = wibox.widget{
     {
         {
