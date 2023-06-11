@@ -12,6 +12,6 @@ return {
   office = "wps",
   run = "rofi -show drun",
   audio_control = "pavucontrol-qt",
-  browser = "firefox",
+  browser = "microsoft-edge-stable",
 }
 

@@ -3,6 +3,7 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 
 require("ui.bar")
+require("ui.titlebar")
 require("ui.notifications")
 
 -- Set wallpaper
