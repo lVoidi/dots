@@ -6,11 +6,11 @@ local separator = function(size)
   return wibox.widget{
     margins = size,
     widget = wibox.container.margin
-  } 
+  }
 end
 
 
-local function add_app(app, text, fg, bg)     
+local function add_app(app, text, fg, bg)
 
         local widget = wibox.widget {
             {

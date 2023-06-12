@@ -5,9 +5,12 @@ local widgets = require("ui.widgets")
 local helpers = require("utils.helpers")
 local colors = require("beautiful").colors
 local gears = require("gears")
+local date_popup = require("ui.date_popup")
+local rubato = require("modules.rubato")
 
 -- Create a textclock widget
-local mytextclock = {
+local function mytextclock(screen) 
+  return wibox.widget{
   {
     {
       {
@@ -33,8 +36,42 @@ local mytextclock = {
       )
   end,
   bg = colors.gray,
+  buttons = awful.button({}, 1, function()
+    date_popup.y = -(screen.workarea.y + screen.selected_tag.gap)
+    date_popup.x = ((screen.geometry.width - (10*screen.selected_tag.gap) )/ 2 ) - date_popup.width/2 + 23
+    if date_popup.is_visible == false then
+      date_popup.visible = true
+      date_popup.is_visible = true
+      local timed_movement_in = rubato.timed {
+          duration = 3/4, --half a second
+          intro = 1/4, --one third of duration
+          rate = 75,
+          easing = rubato.quadratic,
+          subscribed = function(pos)
+            date_popup.y =screen.workarea.y + date_popup.height*(pos-1)
+            date_popup.opacity = pos
+          end
+      }
+      timed_movement_in.target = 1
+
+     else
+      local timed_movement_out = rubato.timed {
+          duration = 1/2, --half a second
+          intro = 1/6, --one third of duration
+          rate = 75,
+          easing = rubato.quadratic,
+          subscribed = function(pos)
+            date_popup.y = (-date_popup.height-(screen.workarea.y + screen.selected_tag.gap))*pos
+            date_popup.opacity = 1-pos
+          end
+      }
+      timed_movement_out.target = 1
+      date_popup.is_visible = false
+    end
+  end),
   widget = wibox.container.background
 }
+end
 screen.connect_signal("request::desktop_decoration", function(s)
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
@@ -127,7 +164,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
       layout = wibox.layout.fixed.horizontal
     }
 
-    local middle = mytextclock
+    local middle = mytextclock(s)
     local right = {
       helpers.margin(5),
       -- widgets.volume,
@@ -139,6 +176,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
+        ontop = true,
         screen   = s,
         height = dpi(35),
         widget   = wibox.container.margin({

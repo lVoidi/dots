@@ -5,31 +5,24 @@ local beautiful = require("beautiful")
 local colors = beautiful.colors
 
 local volume_widget_container = {
-        {
+        { 
           {
-              spacing = 5,
-              layout=wibox.layout.fixed.horizontal,
-              {
-                  {
-                      text=" ",
-                      font="JetBrainsMono Nerd Font 15",
-                      widget=wibox.widget.textbox
-                  },
-                  fg = colors.fg,
-                  widget = wibox.container.background,
-              },
-              {
-                volume_widget{
-                    main_color=colors.green,
-                    widget_type = 'horizontal_bar',
-                    shape = 'rounded_bar',
-                    width = 50,
-                    height = 7,
-                    bg_color=colors.gray.."df"
-                },
-                top = 1, bottom = 1,
-                widget = wibox.container.margin
-              },
+            {
+                image  = "/home/lvoidi/.config/awesome/images/icons/misc/volume.png",
+                forced_width = 100,
+                halign = "center",
+                valign = "center",
+                forced_height = 100,
+                widget = wibox.widget.imagebox
+            },
+            volume_widget{
+                main_color=colors.green,
+                widget_type = 'arc',
+                thickness=7,
+                size = 100,
+                bg_color=colors.gray.."df"
+            },
+            layout = wibox.layout.stack
           },
           left = 7,
           right = 7,
