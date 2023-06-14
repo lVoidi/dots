@@ -1,6 +1,7 @@
 local ruled = require("ruled")
 local awful = require("awful")
 local beautiful = require("beautiful")
+local vars = require("config.declarations")
 
 ruled.client.connect_signal("request::rules", function()
     -- All clients will match this rule.
@@ -38,7 +39,16 @@ ruled.client.connect_signal("request::rules", function()
         },
         properties = { floating = true }
     }
-
+    -- Terminal opacity
+    ruled.client.append_rule {
+        id       = "terminal",
+        rule_any = {
+            class    = {
+                "Alacritty"
+            },
+        },
+        properties = { opacity = 0.8 }
+    }
     -- Set telegram media viewer fullscreen
     ruled.client.append_rule {
         id       = "Media viewer",

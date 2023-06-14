@@ -11,17 +11,17 @@ screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper {
         screen = s,
         widget = {
-            {
+            -- {
                 image     = beautiful.wallpaper,
-                upscale   = true,
-                downscale = true,
+                horizontal_fit_policy = "fit",
+                vertical_fit_policy   = "fit",
                 widget    = wibox.widget.imagebox,
-            },
-            valign = "center",
-            halign = "center",
-            tiled  = true,
-            -- content_fill_horizontal = true,
-            widget = wibox.container.tile,
+        --     },
+        --     valign = "center",
+        --     halign = "center",
+        --     tiled  = false,
+        --     -- content_fill_horizontal = true,
+        --     widget = wibox.container.tile,
         }
     }
 end)
