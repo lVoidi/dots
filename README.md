@@ -3,14 +3,14 @@
 # Dependencies
 - picom
 - awesome git version
-- These are the fonts you need: JetBrainsMono Nerd Font, FiraCode Nerd Font and Roboto.
+- These are the fonts you need: JetBrainsMono Nerd Font, FiraCode Nerd Font, SF Mono Nerd Font and Roboto.
 
 # Before you install it 
 - Make sure that the wallpaper fits with your monitor. In case it doesn't, change it in images/global/wallpaper.png. 
 
 # Installation
 ```bash
-git clone https://github.com/MrJakeSir/dots
+git clone https://github.com/lvoidi/dots
 mv ~/.config/awesome ~/.config/awesome.bak
 mkdir ~/.config/awesome 
 cp -r dots/* ~/.config/awesome/
