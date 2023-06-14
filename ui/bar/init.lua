@@ -176,7 +176,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
-        ontop = true,
         screen   = s,
         height = dpi(35),
         widget   = wibox.container.margin({
