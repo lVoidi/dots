@@ -1,5 +1,9 @@
 # Dotfiles
 
+## DISCLAIMER!!!
+This repository is currently developing a calendar popup, so you probably may see messed up code or a widget that 
+isn't fully made in the last commit, so i would recommend you that if you want to clone this repo, go to [this commit](https://github.com/lVoidi/dots/tree/55578c2ff5a5154c20de767cb1ac2a77c73309f0).
+
 # Dependencies
 - picom
 - awesome git version
