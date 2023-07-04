@@ -1,4 +1,3 @@
-
 return {
   tags = require("ui.widgets.workspaces"),
   tasks = require("ui.widgets.tasks"),
