@@ -139,6 +139,7 @@ theme.notification_border_width = dpi(0)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+
 theme.icon_theme = nil
 return theme
 
