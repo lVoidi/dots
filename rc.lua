@@ -1,5 +1,7 @@
 pcall(require, "luarocks.loader")
 local awful = require("awful")
+
+-- Modules
 require("awful.autofocus")
 require("beautiful").init("~/.config/awesome/theme.lua")
 require("config")
