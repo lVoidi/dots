@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#  The program checks if discord is running
 #  Icons: https://www.flaticon.com/free-icons/play-button Play button icons created by Hilmy Abiyyu A. - Flaticon
 from typing import Tuple
 import pypresence
