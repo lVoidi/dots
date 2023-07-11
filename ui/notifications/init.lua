@@ -97,7 +97,6 @@ naughty.connect_signal("request::display", function(n)
         style = {underline_normal = false, underline_selected = true},
         widget = naughty.list.actions
     }
-
     naughty.layout.box {
         notification = n,
         type = "notification",
@@ -240,7 +239,7 @@ naughty.connect_signal("request::display", function(n)
                 widget = wibox.container.margin
             },
             bg = cols.bg,
-            border_width = beautiful.border_width * 0,
+            border_width = 0,
             border_color = beautiful.border_color,
             shape = function(cr, width, height) 
               gears.shape.rounded_rect(cr, width, height, beautiful.border_radius)
