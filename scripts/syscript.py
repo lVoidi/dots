@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# This program is useful for the menu. Made by me.
 import re, os, subprocess, sys, shutil
 run = lambda cmd: subprocess.run(cmd, stdout=subprocess.PIPE).stdout.decode()
 
