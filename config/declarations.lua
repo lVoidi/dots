@@ -3,10 +3,10 @@ local path = string.format("%s/.config/awesome", os.getenv("HOME"))
 return {
   path = path,
   mod = "Mod4",
-  terminal = "alacritty",
+  terminal = "kitty",
   file_manager = "pcmanfm",
   editor = "nvim",
-  telegram_client = "kotatogram-desktop",
+  telegram_client = "telegram-desktop",
   discord_client = "discord",
   screenshot = "flameshot gui",
   office = "wps",
