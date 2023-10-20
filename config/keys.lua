@@ -44,8 +44,8 @@ awful.keyboard.append_global_keybindings({
   --           {description="Switch keyboard layout", group="custom"}),
 
   -- System security
-  awful.key({ vars.mod }, "z", function() awful.spawn.with_shell("bash /home/mrjakesir/Documentos/Proyects/security/run.sh") end,
-            {description="Switch keyboard layout", group="custom"}),
+  awful.key({ vars.mod }, "z", function() awful.spawn("~/.config/awesome/scripts/i3lock.sh") end,
+            {description="i3lock", group="custom"}),
   
   -- Audio
   awful.key({ vars.mod }, "v", function() awful.spawn.with_shell(vars.audio_control) end,

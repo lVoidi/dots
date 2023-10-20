@@ -18,4 +18,5 @@ run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 run picom
 run mpd
 run pasystray
+sleep 5
 discord_rpc

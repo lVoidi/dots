@@ -11,13 +11,13 @@ local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
 
-local username = "Void"
+local username = "lVoidi"
 local myavatar = dir .. "/images/global/avatar.jpg"
 
 local myfavoritebrowser = vars.browser
 local terminal          = vars.terminal
 local editor            = vars.editor
-local phrase            = "LET HIM COOK"
+local phrase            = "Let it be"
 local my_user_widget = wibox.widget {
   {
     {
@@ -39,7 +39,7 @@ local my_user_widget = wibox.widget {
         {
           {
             {
-              markup = '<span foreground="'..colors.red..'">'..username.."</span>",
+              markup = '<span foreground="'..colors.fg..'">'..username.."</span>",
               -- font = "Krinkes Decor PERSONAL USE 50",
               font = "Roboto 60",
               forced_height = 80,
@@ -52,7 +52,7 @@ local my_user_widget = wibox.widget {
           {
             {
               markup = '<span foreground="'
-                        ..colors.yellow
+                        ..colors.blue
                         ..'">'
                         ..phrase
                         .."  </span>",
@@ -124,7 +124,7 @@ local clock = wibox.widget {
     },
     {
       {
-        format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.purple..'">%M</span>',
+        format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.dim_blue..'">%M</span>',
         -- font = "Varsity Regular 120",
 
         font = "Roboto 120",
@@ -139,11 +139,11 @@ local clock = wibox.widget {
   },
   {
       {
-        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B%e </i></span>',
+        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B %e </i></span>',
         -- font = "Collegerion 30",
 
         font = "Roboto 30",
-        forced_height = 40,
+        forced_height = 60,
         widget = wibox.widget.textclock, 
         halign = "center"
       },
@@ -218,7 +218,7 @@ local ram_bar = wibox.widget {
   },
   forced_width  = dpi(450),
   background_color = colors.darker_gray,
-  color = colors.green,
+  color = colors.fg,
   shape         = gears.shape.rounded_bar,
   widget        = wibox.widget.progressbar,
 }
@@ -257,7 +257,7 @@ local cpu_bar = wibox.widget {
   },
   forced_width  = dpi(450),
   background_color = colors.darker_gray,
-  color = colors.green, --.. "ef",
+  color = colors.fg, --.. "ef",
   shape         = gears.shape.rounded_bar,
   widget        = wibox.widget.progressbar,
 }
@@ -297,7 +297,7 @@ local disk_bar = wibox.widget {
   },
   forced_width  = dpi(450),
   background_color = colors.darker_gray,
-  color = colors.green, --.. "ef",
+  color = colors.fg, --.. "ef",
   shape         = gears.shape.rounded_bar,
   widget        = wibox.widget.progressbar,
 }

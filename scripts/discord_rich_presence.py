@@ -19,9 +19,16 @@ def is_discord_opened() -> bool:
         return False
 
 def neovim_state() -> str: 
-    output = subprocess.run("pgrep nvim", capture_output=True, shell=True)
-    if output.stdout:
-        return "⌨️ Coding (neovim)"
+    nvim = subprocess.run("pgrep nvim", capture_output=True, shell=True)
+    code = subprocess.run("pgrep code", capture_output=True, shell=True)
+    if nvim.stdout and code.stdout:
+        return "⌨️ Coding (vim & vscode)"
+    elif nvim.stdout and not code.stdout:
+        return "⌨️ Coding (vim)"
+    elif not nvim.stdout and code.stdout:
+        return "⌨️ Coding (vscode)"
+    else:
+        return "⌨️ Idling(:/)"
     return "💤Not coding anything "
 
 def get_status() -> Tuple:
