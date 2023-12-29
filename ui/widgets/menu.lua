@@ -571,24 +571,26 @@ local function return_menu(screen)
       menu_popup.visible = true
       menu_popup.is_visible = true
       local timed_movement_in = rubato.timed {
-          duration = 3/4, --half a second
+          duration = 1/2, --half a second
           intro = 1/4, --one third of duration
-          rate = 75,
+          rate = 600,
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = menu_popup.width*(pos-1)
+	    menu_popup.opacity = pos
           end
       }
       timed_movement_in.target = 1
 
      else
       local timed_movement_out = rubato.timed {
-          duration = 3/4, --half a second
+          duration = 1/2, --half a second
           intro = 1/4, --one third of duration
-          rate = 75,
+          rate = 600,
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = -menu_popup.width*pos
+	    menu_popup.opacity = 1-pos
           end
       }
       timed_movement_out.target = 1

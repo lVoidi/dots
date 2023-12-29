@@ -178,7 +178,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         position = "top",
         screen   = s,
         height = dpi(40),
-        opacity = 0.5,
+        opacity = 1,
         widget   = wibox.container.margin({
             layout = wibox.layout.align.horizontal,
             expand = "none",
