@@ -43,9 +43,9 @@ local function mytextclock(screen)
       date_popup.visible = true
       date_popup.is_visible = true
       local timed_movement_in = rubato.timed {
-          duration = 3/4, --half a second
-          intro = 1/4, --one third of duration
-          rate = 75,
+          duration = 1/2,
+          intro = 1/4, 
+          rate = 600,
           easing = rubato.quadratic,
           subscribed = function(pos)
             date_popup.y =screen.workarea.y + date_popup.height*(pos-1)
@@ -58,7 +58,7 @@ local function mytextclock(screen)
       local timed_movement_out = rubato.timed {
           duration = 1/2, --half a second
           intro = 1/6, --one third of duration
-          rate = 75,
+          rate = 600,
           easing = rubato.quadratic,
           subscribed = function(pos)
             date_popup.y = (-date_popup.height-(screen.workarea.y + screen.selected_tag.gap))*pos

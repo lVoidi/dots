@@ -37,7 +37,8 @@ theme.fg_focus      = theme.colors.purple
 theme.fg_urgent     = theme.colors.red
 theme.fg_minimize   = theme.colors.dim_blue
 
-theme.useless_gap         = dpi(4)
+-- theme.useless_gap         = dpi(4)
+theme.useless_gap         = 0
 theme.border_width        = dpi(0)
 theme.border_radius       = dpi(10)
 theme.systray_icon_spacing = 5

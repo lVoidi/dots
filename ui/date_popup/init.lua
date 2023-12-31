@@ -76,53 +76,53 @@ local date_popup = awful.popup {
         {
           {
             cal,
-            {
-              layout = wibox.layout.fixed.horizontal
-            },
-            {
-              {
-                {widget =  wibox.container.margin, top = 10, bottom = 10, widgets.volume},
-                bg = colors.gray.."4f",
-                shape = function(cr, width, height) 
-                      gears.shape.rounded_rect(
-                        cr, width, height, 15)
-                end,
-                widget = wibox.container.background
-              },
-              {
-                {widget =  wibox.container.margin, margins=10,{
-                  {
-                    image = "/home/lvoidi/.config/awesome/images/icons/misc/battery.png",
-                    forced_width = 10,
-                    halign = "center",
-                    valign = "center",
-                    forced_height = 10,
-                    widget = wibox.widget.imagebox
-                  },
-                  batteryarc_widget({
-                    arc_thickness=9,
-                    size = 100,
-                  }),
-                  layout = wibox.layout.stack
-                }},
-                bg = colors.gray.."4f",
-                shape = function(cr, width, height) 
-                      gears.shape.rounded_rect(
-                        cr, width, height, 15)
-                end,
-                widget = wibox.container.background
-              },
-              spacing = 15,
-              layout = wibox.layout.fixed.horizontal
-            },
+--            {
+--              layout = wibox.layout.fixed.horizontal
+--            },
+--            {
+--              {
+--                {widget =  wibox.container.margin, top = 10, bottom = 10, widgets.volume},
+--                bg = colors.gray.."4f",
+--                shape = function(cr, width, height) 
+--                      gears.shape.rounded_rect(
+--                        cr, width, height, 15)
+--                end,
+--                widget = wibox.container.background
+--              },
+--              {
+--                {widget =  wibox.container.margin, margins=10,{
+--                  {
+--                    image = "/home/lvoidi/.config/awesome/images/icons/misc/battery.png",
+--                    forced_width = 10,
+--                    halign = "center",
+--                    valign = "center",
+--                    forced_height = 10,
+--                    widget = wibox.widget.imagebox
+--                  },
+--                  batteryarc_widget({
+--                    arc_thickness=9,
+--                    size = 100,
+--                  }),
+--                  layout = wibox.layout.stack
+--                }},
+--                bg = colors.gray.."4f",
+--                shape = function(cr, width, height) 
+--                      gears.shape.rounded_rect(
+--                        cr, width, height, 15)
+--                end,
+--                widget = wibox.container.background
+--              },
+--              spacing = 15,
+--              layout = wibox.layout.fixed.horizontal
+--            },
             layout = wibox.layout.align.vertical,
             },
             -- wibox.widget.textbox("ola"),
             margins = 20,
             widget = wibox.container.margin
         },
-        forced_width = 700,
-        forced_height = 600,
+        forced_width = 500,
+        --forced_height = 600,
         bg = colors.bg,
         widget = wibox.container.background
       },
