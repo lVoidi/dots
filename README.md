@@ -14,10 +14,11 @@ isn't fully made in the last commit, so i would recommend you that if you want t
 
 # Installation
 ```bash
-git clone https://github.com/lvoidi/dots
-mv ~/.config/awesome ~/.config/awesome.bak
-mkdir ~/.config/awesome 
-cp -r dots/* ~/.config/awesome/
+git clone https://github.com/lvoidi/dots ~/.config/awesome
+cd ~/.config/awesome
+# rubato submodule
+git submodule init
+git submodule update
 ```
 
 # Configuration
