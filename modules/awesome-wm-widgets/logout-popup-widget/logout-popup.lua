@@ -70,7 +70,7 @@ local function launch(args)
     local accent_color = args.accent_color or beautiful.bg_focus
     local text_color = args.text_color or beautiful.fg_normal
     local label_color = args.label_color or beautiful.fg_focus
-    local phrases = args.phrases or {'Goodbye!'}
+    local phrases = args.phrases or {'Goodbye!', 'Sayonara!'}
     local icon_size = args.icon_size or 40
     local icon_margin = args.icon_margin or 16
 

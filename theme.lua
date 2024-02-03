@@ -12,17 +12,17 @@ local theme = {}
 theme.font          = "Roboto 8"
 theme.font_name     = "Roboto "
 theme.colors = {
-    red = "#d55b82",
-    orange = "#ea746c",
-    yellow = "#FBDF90",
-    green = "#9DFAAA",
-    purple = "#E3C9FF",
-    blue = "#BDfBff",
-    dim_blue = "#BEDFE8",
-    bg = "#131a21",
-    fg = "#C6CDD5",
-    gray = "#1d252c",
-    darker_gray = "#363B42"
+    red = "#FF5555",
+    orange = "#FFB86C",
+    yellow = "#F1FA8C",
+    green = "#50FA7B",
+    purple = "#BD93F9",
+    blue = "#8BE9FD",
+    dim_blue = "#6272A4",
+    bg = "#282A365f",
+    fg = "#F8F8F2",
+    gray = "#282C34",
+    darker_gray = "#22242A45"
 }
 
 theme.bg_normal     = theme.colors.bg 
@@ -37,18 +37,17 @@ theme.fg_focus      = theme.colors.purple
 theme.fg_urgent     = theme.colors.red
 theme.fg_minimize   = theme.colors.dim_blue
 
--- theme.useless_gap         = dpi(4)
-theme.useless_gap         = 0
+theme.useless_gap         = 10
 theme.border_width        = dpi(0)
 theme.border_radius       = dpi(10)
 theme.systray_icon_spacing = 5
 theme.border_color_normal = theme.colors.gray
-theme.border_color_active = "#535d6c"
-theme.border_color_marked = "#91231c"
+theme.border_color_active = theme.colors.fg
+theme.border_color_marked = theme.colors.yellow
 
 -- titlebar 
-theme.titlebar_bg_focus = theme.colors.bg
-theme.titlebar_bg = theme.colors.bg
+theme.titlebar_bg_focus = theme.colors.gray
+theme.titlebar_bg = theme.colors.gray
 
 
 -- There are other variable sets

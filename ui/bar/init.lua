@@ -5,7 +5,6 @@ local widgets = require("ui.widgets")
 local helpers = require("utils.helpers")
 local colors = require("beautiful").colors
 local gears = require("gears")
-local date_popup = require("ui.date_popup")
 local rubato = require("modules.rubato")
 
 -- Create a textclock widget
@@ -36,39 +35,39 @@ local function mytextclock(screen)
       )
   end,
   bg = colors.gray,
-  buttons = awful.button({}, 1, function()
-    date_popup.y = -(screen.workarea.y + screen.selected_tag.gap)
-    date_popup.x = ((screen.geometry.width - (10*screen.selected_tag.gap) )/ 2 ) - date_popup.width/2 + 23
-    if date_popup.is_visible == false then
-      date_popup.visible = true
-      date_popup.is_visible = true
-      local timed_movement_in = rubato.timed {
-          duration = 1/2,
-          intro = 1/4, 
-          rate = 600,
-          easing = rubato.quadratic,
-          subscribed = function(pos)
-            date_popup.y =screen.workarea.y + date_popup.height*(pos-1)
-            date_popup.opacity = pos
-          end
-      }
-      timed_movement_in.target = 1
-
-     else
-      local timed_movement_out = rubato.timed {
-          duration = 1/2, --half a second
-          intro = 1/6, --one third of duration
-          rate = 600,
-          easing = rubato.quadratic,
-          subscribed = function(pos)
-            date_popup.y = (-date_popup.height-(screen.workarea.y + screen.selected_tag.gap))*pos
-            date_popup.opacity = 1-pos
-          end
-      }
-      timed_movement_out.target = 1
-      date_popup.is_visible = false
-    end
-  end),
+  -- buttons = awful.button({}, 1, function()
+  --   date_popup.y = -(screen.workarea.y + screen.selected_tag.gap)
+  --   date_popup.x = ((screen.geometry.width - (10*screen.selected_tag.gap) )/ 2 ) - date_popup.width/2 + 23
+  --   if date_popup.is_visible == false then
+  --     date_popup.visible = true
+  --     date_popup.is_visible = true
+  --     local timed_movement_in = rubato.timed {
+  --         duration = 1/2,
+  --         intro = 1/4, 
+  --         rate = 600,
+  --         easing = rubato.quadratic,
+  --         subscribed = function(pos)
+  --           date_popup.y =screen.workarea.y + date_popup.height*(pos-1)
+  --           date_popup.opacity = pos
+  --         end
+  --     }
+  --     timed_movement_in.target = 1
+  --
+  --    else
+  --     local timed_movement_out = rubato.timed {
+  --         duration = 1/2, --half a second
+  --         intro = 1/6, --one third of duration
+  --         rate = 600,
+  --         easing = rubato.quadratic,
+  --         subscribed = function(pos)
+  --           date_popup.y = (-date_popup.height-(screen.workarea.y + screen.selected_tag.gap))*pos
+  --           date_popup.opacity = 1-pos
+  --         end
+  --     }
+  --     timed_movement_out.target = 1
+  --     date_popup.is_visible = false
+  --   end
+  -- end),
   widget = wibox.container.background
 }
 end
@@ -180,11 +179,12 @@ screen.connect_signal("request::desktop_decoration", function(s)
         height = dpi(40),
         opacity = 1,
         widget   = wibox.container.margin({
-            layout = wibox.layout.align.horizontal,
-            expand = "none",
-            left,
-            middle,
-            right,
-        }, 0, 0, 1, 1)
+              layout = wibox.layout.align.horizontal,
+              expand = "none",
+              left,
+              middle,
+              right,
+            }, 0, 0, 0, 2)
+
     }
 end)

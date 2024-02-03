@@ -10,14 +10,13 @@ local vars = require("config.declarations")
 local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
-
-local username = "lVoidi"
-local myavatar = dir .. "/images/global/avatar.jpg"
-
-local myfavoritebrowser = vars.browser
-local terminal          = vars.terminal
-local editor            = vars.editor
-local phrase            = "Let it be"
+local username          = "s7x"
+local phrase            = "素直になれ"
+local myavatar          = dir .. "/images/global/avatar.jpg"
+-- local myfavoritebrowser = vars.browser
+-- local terminal          = vars.terminal
+-- local editor            = vars.editor
+local menu_opacity      = 1
 local my_user_widget = wibox.widget {
   {
     {
@@ -27,7 +26,7 @@ local my_user_widget = wibox.widget {
             {
               image = myavatar,
               forced_width = 200,
-              forced_height= 200,
+              forced_height = 200,
               widget = wibox.widget.imagebox
             },
             shape = gears.shape.rounded_bar,
@@ -40,7 +39,6 @@ local my_user_widget = wibox.widget {
           {
             {
               markup = '<span foreground="'..colors.fg..'">'..username.."</span>",
-              -- font = "Krinkes Decor PERSONAL USE 50",
               font = "Roboto 60",
               forced_height = 80,
               widget = wibox.widget.textbox
@@ -124,7 +122,7 @@ local clock = wibox.widget {
     },
     {
       {
-        format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.dim_blue..'">%M</span>',
+        format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.blue..'">%M</span>',
         -- font = "Varsity Regular 120",
 
         font = "Roboto 120",
@@ -139,7 +137,7 @@ local clock = wibox.widget {
   },
   {
       {
-        format = '<span foreground="'..colors.dim_blue..'"><i>%A, %B %e </i></span>',
+        format = '<span foreground="'..colors.fg..'"><i>%A, %B %e </i></span>',
         -- font = "Collegerion 30",
 
         font = "Roboto 30",
@@ -319,133 +317,133 @@ local disk = wibox.widget{
   layout = wibox.layout.align.horizontal,
   widget = wibox.container.background
 }
-
-local fav_apps = {
-  {
-    {
-      {
-        {
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                myfavoritebrowser.." https://reddit.com/r/unixporn"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.orange,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                myfavoritebrowser.." https://twitter.com"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.blue,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                myfavoritebrowser.." https://github.com"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            "#ffffff",
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                myfavoritebrowser.." https://youtube.com"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.red,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                "discord"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20">󰙯</span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.fg .. "6a",
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                "telegram"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.dim_blue,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                "dolphin"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20">󱢴</span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.yellow,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                terminal
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.fg.."af",
-            colors.gray
-          ),
-          -- 
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                string.format(
-                  "cd ~/.config/awesome; %s -e %s ~/.config/awesome/rc.lua",
-                  terminal, editor
-                )
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 16"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
-            colors.orange,
-            colors.gray
-          ),
-          add_app(
-            function()
-              awful.spawn.with_shell(
-                "flameshot gui"
-              )
-            end,
-            '<span font="JetBrainsMono Nerd Font 16"> </span>',
-            colors.purple,
-            colors.gray
-          ),
-          spacing = 15,
-          layout = wibox.layout.fixed.horizontal
-        },
-        align = 'center',
-        valign = 'center',
-        widget = wibox.container.place
-      },
-      margins = 15,
-      widget = wibox.container.margin
-    },
-    bg = colors.gray .. "85",
-    widget = wibox.container.background
-
-  },
-  spacing = 5,
-  layout = wibox.layout.fixed.vertical
-}
+--
+-- local fav_apps = {
+--   {
+--     {
+--       {
+--         {
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 myfavoritebrowser.." https://reddit.com/r/unixporn"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.orange,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 myfavoritebrowser.." https://twitter.com"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.blue,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 myfavoritebrowser.." https://github.com"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             "#ffffff",
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 myfavoritebrowser.." https://youtube.com"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.red,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 "discord"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20">󰙯</span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.fg .. "6a",
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 "telegram"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.dim_blue,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 "dolphin"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20">󱢴</span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.yellow,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 terminal
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 20"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.fg.."af",
+--             colors.gray
+--           ),
+--           -- 
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 string.format(
+--                   "cd ~/.config/awesome; %s -e %s ~/.config/awesome/rc.lua",
+--                   terminal, editor
+--                 )
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 16"></span><span font="JetBrainsMono Nerd Font 10"> </span>',
+--             colors.orange,
+--             colors.gray
+--           ),
+--           add_app(
+--             function()
+--               awful.spawn.with_shell(
+--                 "flameshot gui"
+--               )
+--             end,
+--             '<span font="JetBrainsMono Nerd Font 16"> </span>',
+--             colors.purple,
+--             colors.gray
+--           ),
+--           spacing = 15,
+--           layout = wibox.layout.fixed.horizontal
+--         },
+--         align = 'center',
+--         valign = 'center',
+--         widget = wibox.container.place
+--       },
+--       margins = 15,
+--       widget = wibox.container.margin
+--     },
+--     bg = colors.gray .. "85",
+--     widget = wibox.container.background
+--
+--   },
+--   spacing = 5,
+--   layout = wibox.layout.fixed.vertical
+-- }
 
 
 local logout = wibox.widget{
@@ -502,7 +500,7 @@ local function return_menu(screen)
               },
               {
                 start_widget,
-                fav_apps,
+                -- fav_apps,
                 {
                   {
                     {
@@ -549,6 +547,7 @@ local function return_menu(screen)
       end,
       ontop           = true,
       visible         = false,
+      opacity         = menu_opacity,
       is_visible      = false,
   }
 
@@ -571,13 +570,13 @@ local function return_menu(screen)
       menu_popup.visible = true
       menu_popup.is_visible = true
       local timed_movement_in = rubato.timed {
-          duration = 1/2, --half a second
-          intro = 1/4, --one third of duration
+          duration = 1/2,
+          intro = 1/4,
           rate = 600,
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = menu_popup.width*(pos-1)
-	    menu_popup.opacity = pos
+	    menu_popup.opacity = pos*menu_opacity
           end
       }
       timed_movement_in.target = 1
@@ -590,7 +589,7 @@ local function return_menu(screen)
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = -menu_popup.width*pos
-	    menu_popup.opacity = 1-pos
+	    menu_popup.opacity = (1-pos)*menu_opacity
           end
       }
       timed_movement_out.target = 1

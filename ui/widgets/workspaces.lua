@@ -36,7 +36,7 @@ local function return_taglist(s)
     local empty_icon = " "
 
     local focus_icon =  " "
-    local focus_color = colors.dim_blue
+    local focus_color = colors.blue
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 

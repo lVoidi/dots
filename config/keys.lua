@@ -35,6 +35,10 @@ awful.keyboard.append_global_keybindings({
   awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager) end,
             {description="File Manager", group="custom"}),
 
+  -- Ping
+  awful.key({ vars.mod }, "/", function() awful.spawn.with_shell("ping -c 4 8.8.8.8; notify-send Done") end,
+            {description="Ping google (to make wifi work in my case)", group="custom"}),
+
   -- Screenshot
   awful.key({ }, "Print", function() awful.spawn(vars.screenshot) end,
             {description="Take screenshot", group="custom"}),

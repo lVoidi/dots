@@ -44,10 +44,11 @@ ruled.client.connect_signal("request::rules", function()
         id       = "terminal",
         rule_any = {
             class    = {
-                "Alacritty"
+                "Alacritty",
+                "kitty"
             },
         },
-        properties = { opacity = 0.8 }
+        properties = { opacity = 1 }
     }
     -- Set telegram media viewer fullscreen
     ruled.client.append_rule {
