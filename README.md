@@ -1,8 +1,3 @@
-# Dotfiles
-
-## Important!
-Working on "Luminary of the stars" edition
-
 # Dependencies
 - picom
 - pamixer recommended
