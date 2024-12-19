@@ -1,13 +1,81 @@
 local awful = require("awful")
 local vars = require("config.declarations")
+local naughty = require("naughty")
+local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local volume_widget = require('modules.awesome-wm-widgets.volume-widget.volume')
+local gears = require("gears")
 local alt = "Mod1"
 
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 4, awful.tag.viewprev),
     awful.button({ }, 5, awful.tag.viewnext),
 })
+
+local volume_percent = wibox.widget{
+  text = "100%",
+  font = "FiraCode Nerd Font 45",
+  widget = wibox.widget.textbox
+}
+
+local volume_widget = awful.popup{
+  widget = {
+    {
+    {
+        text = "  ",
+        font = "FiraCode Nerd Font 55",
+        widget = wibox.widget.textbox
+      },
+      volume_percent,
+      layout = wibox.layout.fixed.horizontal
+    },
+    margins = 20,
+    widget = wibox.container.margin
+  },
+  x = 10,
+  y = 50,
+  shape = function(cr, width, height) gears.shape.rounded_rect (cr, width, height, 15) end,
+  ontop = true,
+  visible = false
+}
+
+local volume_script = [[pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(\d+)%' | head -n 1]]
+
+local dec_volume = function()
+  awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+  awful.spawn.easy_async_with_shell(volume_script, function(out)
+    volume_percent.text = out:gsub("\n[^\n]*$", "")
+    if volume_widget.visible == false then
+      volume_widget.visible = true
+      gears.timer{
+        timeout = 1,
+        autostart = true,
+        single_shot = true,
+        callback = function()
+          volume_widget.visible = false
+        end
+      }
+    end
+  end)
+end
+
+local inc_volume = function()
+  awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+  awful.spawn.easy_async_with_shell(volume_script, function(out)
+    volume_percent.text = out:gsub("\n[^\n]*$", "")
+    if volume_widget.visible == false then
+      volume_widget.visible = true
+      gears.timer{
+        timeout = 2,
+        autostart = true,
+        single_shot = true,
+        callback = function()
+          volume_widget.visible = false
+        end
+      }
+    end
+  end)
+end
+
 
 awful.keyboard.append_global_keybindings({
 
@@ -56,11 +124,11 @@ awful.keyboard.append_global_keybindings({
             {description="Open audio control", group="custom"}),
   
   -- Increasing volume
-  awful.key({ vars.mod }, "=", function() volume_widget:inc() end,
+  awful.key({ vars.mod }, "=", function() inc_volume() end,
             {description="Increase volume", group="custom"}),
   
   -- Decreasing volume
-  awful.key({ vars.mod }, "-", function() volume_widget:dec() end,
+  awful.key({ vars.mod }, "-", function() dec_volume() end,
             {description="Decrease volume", group="custom"}),
 
   -- Logout
