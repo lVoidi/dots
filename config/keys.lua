@@ -1,10 +1,10 @@
 local awful = require("awful")
 local vars = require("config.declarations")
-local naughty = require("naughty")
 local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local gears = require("gears")
-local alt = "Mod1"
+local beautiful = require("beautiful")
+local colors = beautiful.colors
 
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 4, awful.tag.viewprev),
@@ -21,7 +21,7 @@ local volume_widget = awful.popup{
   widget = {
     {
     {
-        text = "  ",
+        markup = '<span foreground="'..colors.purple..'">  </span>',
         font = "FiraCode Nerd Font 55",
         widget = wibox.widget.textbox
       },

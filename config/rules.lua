@@ -58,7 +58,7 @@ ruled.client.connect_signal("request::rules", function()
                 "Media viewer",
             }
         },
-        properties = { fullscreen = true, ontop = true, maximized = true }
+        properties = { fullscreen = true, ontop = true}
     }
 
     -- Add titlebars to normal clients and dialogs
