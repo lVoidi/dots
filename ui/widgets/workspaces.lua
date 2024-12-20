@@ -79,12 +79,12 @@ local icon_taglist = awful.widget.taglist {
       {
         {
           id = 'workspace_role',
-          font = "JetBrainsMono Nerd Font 16",
+          font = "FiraCode Nerd Font 16",
           widget = wibox.widget.textbox
         },
         {
           id = 'icon_role',
-          font = "JetBrainsMono Nerd Font 8",
+          font = "FiraCode Nerd Font 8",
           valign = "top",
           widget = wibox.widget.textbox
         },

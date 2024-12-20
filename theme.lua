@@ -9,8 +9,8 @@ local path = string.format("%s/.config/awesome", os.getenv("HOME"))
 local icon_path = "~/.config/awesome/images/icons/"
 local theme = {}
 
-theme.font          = "Roboto 8"
-theme.font_name     = "Roboto "
+theme.font          = "FiraCode Nerd Font 8"
+theme.font_name     = "FiraCode Nerd Font "
 theme.colors = {
     red = "#FF5555",
     orange = "#FFB86C",

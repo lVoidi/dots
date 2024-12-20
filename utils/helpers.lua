@@ -17,7 +17,7 @@ local function add_app(app, text, fg, bg)
               {
                   {
                     markup = text,
-                    font = "JetBrainsMono Nerd Font 15",
+                    font = "FiraCode Nerd Font 15",
                     widget = wibox.widget.textbox
                   },
                   -- Margin 

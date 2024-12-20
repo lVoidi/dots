@@ -15,12 +15,12 @@ local function mytextclock(screen)
       {
 
         format = '<span foreground="'..colors.green..
-                 '" font="SF Mono 10">%H </span>',
+                 '" font="FiraCode Nerd Font 10">%H </span>',
         widget = wibox.widget.textclock
       },
       {
         format = '<span foreground="'..colors.green..
-               '" font="SF Mono 10">%M </span>',
+               '" font="FiraCode Nerd Font 10">%M </span>',
         widget = wibox.widget.textclock
       },
       layout = wibox.layout.align.vertical
