@@ -426,7 +426,7 @@ local function return_menu(screen)
       local timed_movement_in = rubato.timed {
           duration = 1/2,
           intro = 1/4,
-          rate = 600,
+          rate = 100,
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = menu_popup.width*(pos-1)
@@ -439,7 +439,7 @@ local function return_menu(screen)
       local timed_movement_out = rubato.timed {
           duration = 1/2,
           intro = 1/4,
-          rate = 600,
+          rate = 100,
           easing = rubato.quadratic,
           subscribed = function(pos)
             menu_popup.x = -menu_popup.width*pos

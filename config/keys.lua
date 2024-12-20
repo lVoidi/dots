@@ -124,11 +124,16 @@ awful.keyboard.append_global_keybindings({
             {description="Open audio control", group="custom"}),
   
   -- Increasing volume
-  awful.key({ vars.mod }, "=", function() inc_volume() end,
+  awful.key({ vars.mod }, "=", inc_volume,
             {description="Increase volume", group="custom"}),
   
   -- Decreasing volume
-  awful.key({ vars.mod }, "-", function() dec_volume() end,
+  awful.key({ vars.mod }, "-", dec_volume,
+            {description="Decrease volume", group="custom"}),
+
+  awful.key({ vars.mod }, "XF86AudioRaiseVolume", inc_volume,
+            {description="Increase volume", group="custom"}),
+  awful.key({ vars.mod }, "XF86AudioLowerVolume", dec_volume,
             {description="Decrease volume", group="custom"}),
 
   -- Logout
