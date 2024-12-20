@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/home/sta7ix/.config/awesome/scripts/discord_rich_presence.py", line 5, in <module>
-    import pypresence
-ModuleNotFoundError: No module named 'pypresence'

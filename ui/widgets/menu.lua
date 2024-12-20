@@ -9,8 +9,8 @@ local wibox = require("wibox")
 local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
-local username          = "s7x"
-local phrase            = "素直になれ"
+local username          = "lVoidi"
+local phrase            = "Lock tf in"
 local myavatar          = dir .. "/images/global/avatar.jpg"
 local menu_opacity      = 1
 local my_user_widget = wibox.widget {
