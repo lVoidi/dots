@@ -2,8 +2,7 @@
 - picom
 - pamixer recommended
 - awesome git version
-- These are the fonts you need: JetBrainsMono Nerd Font, FiraCode Nerd Font, SF Mono Nerd Font and Roboto.
-
+- These are the fonts you need: FiraCode Nerd Font. Recommended `noto-fonts-cjk`.
 recommended: kitty or alacritty, neovim (with nvchad or your own config), blur and rounded corners in your picom config
 
 # Before you install it 

@@ -35,7 +35,7 @@ local my_user_widget = wibox.widget {
           {
             {
               markup = '<span foreground="'..colors.fg..'">'..username.."</span>",
-              font = "Roboto 60",
+              font = "FiraCode Nerd Font 60",
               forced_height = 80,
               widget = wibox.widget.textbox
             },
@@ -50,7 +50,7 @@ local my_user_widget = wibox.widget {
                         ..'">'
                         ..phrase
                         .."  </span>",
-              font = "Roboto 35",
+              font = "FiraCode Nerd Font 35",
               forced_height = 60,
               widget = wibox.widget.textbox
             },
@@ -81,7 +81,7 @@ local clock = wibox.widget {
     {
       {
         format = '<span foreground="'..colors.green..'">%H</span><span font="Varsity Regular 50"> </span>',
-        font = "Roboto 120",
+        font = "FiraCode Nerd Font 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
@@ -93,7 +93,7 @@ local clock = wibox.widget {
 
         wibox.widget{
           markup = '<span foreground="'..colors.yellow..'"> </span>',
-          font = "JetBrainsMono Nerd Font 14",
+          font = "FiraCode Nerd Font 14",
           widget = wibox.widget.textbox
         },
         {
@@ -102,7 +102,7 @@ local clock = wibox.widget {
         },
         wibox.widget{
           markup = '<span foreground="'..colors.yellow..'"> </span>',
-          font = "JetBrainsMono Nerd Font 14",
+          font = "FiraCode Nerd Font 14",
           widget = wibox.widget.textbox
         },
         layout = wibox.layout.fixed.vertical
@@ -113,7 +113,7 @@ local clock = wibox.widget {
     {
       {
         format = '<span font="Varsity Regular 40"> </span><span foreground="'..colors.blue..'">%M</span>',
-        font = "Roboto 120",
+        font = "FiraCode Nerd Font 120",
         widget = wibox.widget.textclock
       },
       margins = 10,
@@ -125,7 +125,7 @@ local clock = wibox.widget {
   {
       {
         format = '<span foreground="'..colors.fg..'"><i>%A, %B %e </i></span>',
-        font = "Roboto 30",
+        font = "FiraCode Nerd Font 30",
         forced_height = 60,
         widget = wibox.widget.textclock,
         halign = "center"
@@ -158,8 +158,8 @@ local start_widget = wibox.widget{
     {
       markup = '<span foreground="'
         ..colors.gray..
-        '"><span font="JetBrainsMono Nerd Font 26">󱓟 '
-        ..'</span><span font="Roboto 20"> Launch</span></span>',
+        '"><span font="FiraCode Nerd Font 26">󱓟 '
+        ..'</span><span font="FiraCode Nerd Font 20"> Launch</span></span>',
       align = 'center',
       valign = 'center',
       widget = wibox.widget.textbox
@@ -220,7 +220,7 @@ end)
 
 local ram = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue..'" font="JetBrainsMono Nerd Font 20"> </span>',
+    markup = '<span foreground="'..colors.blue..'" font="FiraCode Nerd Font 20"> </span>',
     widget = wibox.widget.textbox,
   },
   separate(5),
@@ -258,7 +258,7 @@ end)
 
 local cpu = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20">  </span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="FiraCode Nerd Font 20">  </span>',
     ellipsize = "none",
     widget = wibox.widget.textbox,
   },
@@ -292,7 +292,7 @@ end)
 
 local disk = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue.."ef"..'" font="JetBrainsMono Nerd Font 20"> </span>',
+    markup = '<span foreground="'..colors.blue.."ef"..'" font="FiraCode Nerd Font 20"> </span>',
     widget = wibox.widget.textbox,
   },
   separate(5),
@@ -307,8 +307,8 @@ local logout = wibox.widget{
     {
       markup = '<span foreground="'
         ..colors.gray..
-        '"><span font="JetBrainsMono Nerd Font 26">󰗼 '
-        ..'</span><span font="Roboto 20">Logout</span></span>',
+        '"><span font="FiraCode Nerd Font 26">󰗼 '
+        ..'</span><span font="FiraCode Nerd Font 20">Logout</span></span>',
       separate(0),
       align = 'center',
       valign = 'center',
