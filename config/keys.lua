@@ -103,22 +103,9 @@ awful.keyboard.append_global_keybindings({
   awful.key({ vars.mod }, "e", function() awful.spawn(vars.file_manager) end,
             {description="File Manager", group="custom"}),
 
-  -- Ping
-  awful.key({ vars.mod }, "/", function() awful.spawn.with_shell("ping -c 4 8.8.8.8; notify-send Done") end,
-            {description="Ping google (to make wifi work in my case)", group="custom"}),
-
   -- Screenshot
   awful.key({ }, "Print", function() awful.spawn(vars.screenshot) end,
             {description="Take screenshot", group="custom"}),
-
-  -- Swap between keyboard layouts
-  -- awful.key({ vars.mod }, "space", function() awful.spawn({"bash", "/home/mrjakesir/.config/awesome/scripts/switch_keyboard.sh"}) end,
-  --           {description="Switch keyboard layout", group="custom"}),
-
-  -- System security
-  awful.key({ vars.mod }, "z", function() awful.spawn("~/.config/awesome/scripts/i3lock.sh") end,
-            {description="i3lock", group="custom"}),
-  
   -- Audio
   awful.key({ vars.mod }, "v", function() awful.spawn.with_shell(vars.audio_control) end,
             {description="Open audio control", group="custom"}),
