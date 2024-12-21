@@ -56,6 +56,8 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = {
             name    = {
                 "Media viewer",
+                "mpv",
+                "vlc"
             }
         },
         properties = { fullscreen = true, ontop = true}
