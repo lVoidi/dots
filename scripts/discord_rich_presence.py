@@ -29,7 +29,6 @@ def neovim_state() -> str:
         return "⌨️ Coding (vscode)"
     else:
         return "⌨️ Idling(:/)"
-    return "💤Not coding anything "
 
 def get_status() -> Tuple:
     

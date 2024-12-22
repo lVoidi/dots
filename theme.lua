@@ -11,6 +11,8 @@ local theme = {}
 
 theme.font          = "FiraCode Nerd Font 8"
 theme.font_name     = "FiraCode Nerd Font "
+theme.username      = "lVoidi"
+theme.description   = "Lock tf in"
 theme.colors = {
     red = "#FF5555",
     orange = "#FFB86C",

@@ -9,8 +9,8 @@ local wibox = require("wibox")
 local dpi           = require("beautiful.xresources").apply_dpi
 
 local dir = os.getenv("HOME") .. "/.config/awesome"
-local username          = "lVoidi"
-local phrase            = "Lock tf in"
+local username          = beautiful.username
+local phrase            = beautiful.description
 local myavatar          = dir .. "/images/global/avatar.jpg"
 local menu_opacity      = 1
 local my_user_widget = wibox.widget {
@@ -307,8 +307,8 @@ local logout = wibox.widget{
     {
       markup = '<span foreground="'
         ..colors.gray..
-        '"><span font="FiraCode Nerd Font 26">󰗼 '
-        ..'</span><span font="FiraCode Nerd Font 20">Logout</span></span>',
+        '"><span font="FiraCode Nerd Font 20">󰗼 '
+        ..'</span><span font="FiraCode Nerd Font 16">Logout</span></span>',
       separate(0),
       align = 'center',
       valign = 'center',
