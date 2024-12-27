@@ -1,6 +1,5 @@
 local gears = require("gears")
 local rubato = require("modules.rubato")
-local add_app = require("utils.helpers").app
 local separate = require("utils.helpers").margin
 local beautiful = require("beautiful")
 local colors  = beautiful.colors
@@ -8,11 +7,16 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi           = require("beautiful.xresources").apply_dpi
 
+
+-- Default general vlaues
 local dir = os.getenv("HOME") .. "/.config/awesome"
 local username          = beautiful.username
 local phrase            = beautiful.description
 local myavatar          = dir .. "/images/global/avatar.jpg"
 local menu_opacity      = 1
+
+-- This widget contains the username, the phrase and the description 
+-- Image is 200x200 but the avatar.jpg file can be any size
 local my_user_widget = wibox.widget {
   {
     {
@@ -76,6 +80,8 @@ local my_user_widget = wibox.widget {
   widget = wibox.container.margin
 }
 
+
+-- Shows the local hour, weekday and date
 local clock = wibox.widget {
   {
     {
@@ -134,6 +140,8 @@ local clock = wibox.widget {
   },
   layout = wibox.layout.fixed.vertical
 }
+
+-- Wraps the clock in a single widget
 clock = wibox.widget{
   {
     clock,
@@ -153,6 +161,8 @@ clock = wibox.widget{
   widget = wibox.container.background
 }
 
+
+-- Shows the launch button
 local start_widget = wibox.widget{
   {
     {
@@ -179,6 +189,7 @@ local start_widget = wibox.widget{
   widget = wibox.container.background
 }
 
+-- Required signals for visuals and functionality
 start_widget:connect_signal("mouse::enter", function()
   start_widget.bg = colors.blue .. "ff"
 end)
@@ -191,6 +202,14 @@ start_widget:connect_signal("button::press", function()
   start_widget.bg = colors.fg
   awful.spawn.with_shell("rofi -show drun")
 end)
+
+---------------------- 
+---
+--- System Bars 
+---
+----------------------
+
+-- Ram wrapper 
 local ram_bar = wibox.widget {
   max_value     = 100,
   value         = 99,
@@ -206,6 +225,8 @@ local ram_bar = wibox.widget {
   widget        = wibox.widget.progressbar,
 }
 
+
+-- Ram script used 
 local used_ram_script = [[
   bash -c "
   free -m | grep 'Mem:' | awk '{printf \"%d@@%d@\", $7, $2}'
@@ -218,6 +239,7 @@ awful.widget.watch(used_ram_script, 20, function(_, stdout)
                      ram_bar.value = used_ram_percentage
 end)
 
+-- Ram widget wrapper 
 local ram = wibox.widget{
   {
     markup = '<span foreground="'..colors.blue..'" font="FiraCode Nerd Font 20"> </span>',
@@ -256,6 +278,7 @@ awful.widget.watch(cpu_idle_script, 20, function(_, stdout)
   cpu_bar.value = 100-tonumber(cpu_idle)
 end)
 
+-- CPU wrapper 
 local cpu = wibox.widget{
   {
     markup = '<span foreground="'..colors.blue.."ef"..'" font="FiraCode Nerd Font 20">  </span>',
@@ -269,6 +292,8 @@ local cpu = wibox.widget{
   widget = wibox.container.background
 }
 
+
+-- Disk wrapper 
 local disk_bar = wibox.widget {
   max_value     = 1,
   value         = 0.3,
@@ -302,6 +327,7 @@ local disk = wibox.widget{
   widget = wibox.container.background
 }
 
+-- Logout button, calls the logout popup
 local logout = wibox.widget{
   {
     {
@@ -342,6 +368,9 @@ logout:connect_signal("button::press", function()
   require("modules.awesome-wm-widgets.logout-popup-widget.logout-popup").launch()
 end)
 
+
+-- This function wraps the menu as a widget for the wibar, with the awesome wm logo. You can change this 
+-- in images/global/awesome.svg. Any SVG would work.
 local function return_menu(screen)
   local menu_popup = awful.popup {
       widget = {
