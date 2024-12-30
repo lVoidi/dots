@@ -242,7 +242,7 @@ end)
 -- Ram widget wrapper 
 local ram = wibox.widget{
   {
-    markup = '<span foreground="'..colors.blue..'" font="FiraCode Nerd Font 20"> </span>',
+    markup = '<span foreground="'..colors.blue..'" font="FiraCode Nerd Font 20"> </span>',
     widget = wibox.widget.textbox,
   },
   separate(5),
