@@ -34,7 +34,7 @@ local function mytextclock(screen)
         cr, width, height, true, false, true, false, 30
       )
   end,
-  bg = colors.gray,
+  bg = colors.darker_gray_but_not_that_dark,
   -- buttons = awful.button({}, 1, function()
   --   date_popup.y = -(screen.workarea.y + screen.selected_tag.gap)
   --   date_popup.x = ((screen.geometry.width - (10*screen.selected_tag.gap) )/ 2 ) - date_popup.width/2 + 23
@@ -111,7 +111,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
             right = 5,
             widget = wibox.container.margin
           },
-          bg = colors.darker_gray,
+          bg = colors.gray,
           shape = function(cr, width, height)
             gears.shape.partially_rounded_rect(
               cr, width, height, true, false, false, true, 30
@@ -140,7 +140,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
               right = 6,
               widget = wibox.container.margin
             },
-            bg = colors.darker_gray,
+            bg = colors.darker_gray_but_not_that_dark,
             shape = function(cr, width, height)
               gears.shape.partially_rounded_rect(
                 cr, width, height, false, true, true, false, 30
@@ -151,7 +151,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
           s.mytaglist,
           layout = wibox.layout.fixed.horizontal,
         },
-        bg = colors.gray,
+        bg = colors.darker_gray_but_not_that_dark,
         shape = function(cr, width, height)
           gears.shape.partially_rounded_rect(
             cr, width, height, false, true, true, false, 30

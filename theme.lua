@@ -14,24 +14,25 @@ theme.font_name     = "FiraCode Nerd Font "
 theme.username      = "lVoidi"
 theme.description   = "Lock tf in"
 theme.colors = {
-    red = "#FF5555",
-    orange = "#FFB86C",
-    yellow = "#F1FA8C",
-    green = "#50FA7B",
-    purple = "#BD93F9",
-    blue = "#8BE9FD",
-    dim_blue = "#6272A4",
-    bg = "#282A365f",
-    fg = "#F8F8F2",
-    gray = "#282C34",
-    darker_gray = "#22242A45"
+    red = "#bf616a",
+    orange = "#d08770",
+    yellow = "#ebcb8b",
+    green = "#a3be8c",
+    purple = "#b48ead",
+    blue = "#8fbcbb",
+    dim_blue = "#81a1c1",
+    bg = "#2e3440",
+    fg = "#d8dee9",
+    gray = "#4c566a",
+    darker_gray_but_not_that_dark = "#434c5eaa",
+    darker_gray = "#3b4252"
 }
 
 theme.bg_normal     = theme.colors.bg 
 theme.bg_focus      = theme.colors.bg .. "00"
 theme.bg_urgent     = theme.colors.bg .. "00"
 theme.bg_minimize   = theme.colors.bg .. "00"
-theme.bg_systray    = theme.colors.gray.."00"
+theme.bg_systray    = theme.colors.gray
 
 theme.hotkeys_modifiers_fg    = theme.colors.fg .. "df"
 theme.fg_normal     = theme.colors.fg
@@ -48,8 +49,8 @@ theme.border_color_active = theme.colors.fg
 theme.border_color_marked = theme.colors.yellow
 
 -- titlebar 
-theme.titlebar_bg_focus = theme.colors.gray
-theme.titlebar_bg = theme.colors.gray
+theme.titlebar_bg_focus = theme.colors.bg
+theme.titlebar_bg = theme.colors.bg
 
 
 -- There are other variable sets
