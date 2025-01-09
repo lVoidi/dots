@@ -7,6 +7,9 @@ import os
 import subprocess
 import time
 
+spotify = False 
+cmus = True
+
 def get_current_uptime() -> str:
     output = subprocess.run(["uptime", "-p"], stdout=subprocess.PIPE, text=True).stdout
     return output.capitalize() 
@@ -35,8 +38,12 @@ def get_status() -> Tuple:
     paused = "https://i.imgur.com/2GophkL.png"
     playing = "https://i.imgur.com/2zsBGMB.png"
     idling = "https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png"
+    get_state = ""
 
-    get_state = subprocess.run("playerctl -p spotify status", shell=True, capture_output=True).stdout.decode().lower()
+    if spotify:
+        get_state = subprocess.run("playerctl -p spotify status", shell=True, capture_output=True).stdout.decode().lower()
+    elif cmus:
+        get_state = subprocess.run("cmus-remote -Q | grep status", shell=True, capture_output=True).stdout.decode().lower()
     
     if "paused" in get_state:
         return ("Paused", paused)
@@ -56,6 +63,12 @@ def get_current_song_spotify() -> str:
 
     return "🎧 Playing: " + output.stdout.decode()
 
+def get_current_song_cmus() -> str:
+    title = subprocess.run("cmus-remote -Q | grep title", shell=True, capture_output=True).stdout.decode().replace("tag title ", "")
+    albumartist = subprocess.run('cmus-remote -Q | grep "tag artist "', shell=True, capture_output=True).stdout.decode().replace("tag artist ", "") 
+
+    return title + " - " + albumartist
+
 def main():
 
     presence = pypresence.Presence(client_id="1115295203423690833")
@@ -66,11 +79,16 @@ def main():
     while True:
         try:
             status = get_status()
+            current_playing = "" 
+            if cmus:
+                current_playing = get_current_song_cmus()
+            elif spotify:
+                current_playing = get_current_song_spotify()
             presence.update(
                 pid=os.getpid(),
-                state=get_current_song_spotify(), 
+                state=current_playing, 
                 details=neovim_state(), 
-                large_image="https://pbs.twimg.com/profile_images/1541631471387033600/c-RwIyV4_400x400.jpg", 
+                large_image="https://i.pinimg.com/736x/2e/a9/46/2ea946bbc0adedf4c9efaa0159948b49.jpg", 
                 large_text=get_current_uptime(), 
                 small_text=status[0],
                 small_image=status[1],
