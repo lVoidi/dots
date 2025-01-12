@@ -146,7 +146,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ vars.mod },            "r",     function () awful.spawn.with_shell(vars.run) end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ vars.mod }, "p", function() menubar.show() end,
+    awful.key({ vars.mod }, "p", function() awful.spawn.with_shell("~/.config/awesome/scripts/toggle_picom.sh") end,
               {description = "show the menubar", group = "launcher"}),
 })
 
