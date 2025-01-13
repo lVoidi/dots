@@ -5,6 +5,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 awful.util.tagnames = {
   '<span foreground="'..colors.red..'">󱇶 </span>',
+  '<span foreground="'..colors.orange..'"> </span>',
   '<span foreground="'..colors.yellow..'"> </span>',
   '<span foreground="'..colors.green..'">󰅨 </span>',
   '<span foreground="'..colors.blue..'"> </span>',
@@ -73,7 +74,7 @@ local function return_taglist(s)
 local icon_taglist = awful.widget.taglist {
   screen = s,
   filter = awful.widget.taglist.filter.all,
-  layout = {spacing = 0, layout = wibox.layout.flex.horizontal},
+  layout = {spacing = 5, layout = wibox.layout.flex.horizontal},
   widget_template = {
     {
       {
@@ -118,10 +119,10 @@ local icon_taglist = awful.widget.taglist {
       {
         icon_taglist,
         left = 7,
-        right = 7,
+        right = 0,
         widget = wibox.container.margin
       },
-      margins = 1,
+      margins = 5,
       widget = wibox.container.margin
   }
 
