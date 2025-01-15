@@ -13,7 +13,7 @@ local dir = os.getenv("HOME") .. "/.config/awesome"
 local username          = beautiful.username
 local phrase            = beautiful.description
 local myavatar          = dir .. "/images/global/avatar.jpg"
-local menu_opacity      = 0.760
+local menu_opacity      = 1
 
 -- This widget contains the username, the phrase and the description 
 -- Image is 200x200 but the avatar.jpg file can be any size
